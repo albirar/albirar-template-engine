@@ -8,9 +8,9 @@
 		<artifactId>albirar-root-dependencies</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>template-engine</artifactId>
+	<artifactId>albirar-template-engine</artifactId>
 	<packaging>jar</packaging>
-	<name>template-engine</name>
+	<name>albirar-template-engine</name>
 	<description>A template engine to transform markdown</description>
 
 	<properties>
