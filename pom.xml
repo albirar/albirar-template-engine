@@ -11,9 +11,27 @@
 	<artifactId>albirar-template-engine</artifactId>
 	<packaging>jar</packaging>
 	<name>albirar-template-engine</name>
-	<description>A template engine to transform markdown</description>
+	<description>A template engine to transform Thymeleaf templates into HTML for email purposes</description>
 
-	<properties>
-	</properties>
-	
+
+	<dependencies>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>${spring-thymeleaf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring5</artifactId>
+			<version>${spring-thymeleaf.version}</version>
+		</dependency>
+		
+		<!-- TEST -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>${jsoup.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>
