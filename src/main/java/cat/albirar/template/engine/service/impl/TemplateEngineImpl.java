@@ -18,11 +18,13 @@
  */
 package cat.albirar.template.engine.service.impl;
 
+import java.util.Collections;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.context.Context;
+import org.thymeleaf.TemplateSpec;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
@@ -47,12 +49,14 @@ public class TemplateEngineImpl implements ITemplateEngine {
     @Override
     public String renderTemplate(TemplateInstanceBean template) {
         SpringTemplateEngine templateEngine;
+        TemplateSpec tspec;
     
         LOGGER.debug("Render template {}", template);
         templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
         templateEngine.setMessageSource(template.getMessages());
-        
-        return templateEngine.process(template.getTemplate(), new Context(template.getLocale(), template.getVariables()));
+        tspec = new TemplateSpec(template.getTemplate(), Collections.emptySet(), template.getContentType().getTemplateMode()
+                , template.getVariables());
+        return templateEngine.process(tspec, new TemplateEngineContext(template));
     }
 }

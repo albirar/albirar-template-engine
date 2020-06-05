@@ -77,6 +77,8 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
     private static TemplateInstanceBeanBuilder buildBuilder(TemplateDefinitionBean definition) {
         return builder()
                 .name(definition.getName())
+                .charSet(definition.getCharSet())
+                .contentType(definition.getContentType())
                 .template(definition.getTemplate())
                 .locale(new Locale(""))
                 .messages(new ResourceBundleMessageSource())

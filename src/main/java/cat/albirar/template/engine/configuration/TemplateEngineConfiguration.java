@@ -16,7 +16,10 @@
  */
 package cat.albirar.template.engine.configuration;
 
+import static cat.albirar.template.engine.configuration.PropertiesTemplate.CHARSET_VALUE;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +40,7 @@ import cat.albirar.template.engine.service.impl.TemplateEngineImpl;
 @Configuration
 @ComponentScan(basePackageClasses = {ITemplateEngine.class, TemplateEngineImpl.class})
 public class TemplateEngineConfiguration {
+    
     @Bean
     public SpringTemplateEngine templateEngine(@Autowired SpringResourceTemplateResolver resolver) {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -45,9 +49,9 @@ public class TemplateEngineConfiguration {
     }
 
     @Bean
-    public SpringResourceTemplateResolver thymeleafTemplateResolver() {
+    public SpringResourceTemplateResolver thymeleafTemplateResolver(@Value(CHARSET_VALUE) String charset) {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setTemplateMode("HTML5");
+        templateResolver.setCharacterEncoding(charset);
         return templateResolver;
     }
 

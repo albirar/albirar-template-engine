@@ -38,6 +38,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.StringUtils;
 
+import cat.albirar.template.engine.EContentType;
 import cat.albirar.template.engine.models.TemplateDefinitionBean;
 import cat.albirar.template.engine.models.TemplateInstanceBean;
 import cat.albirar.template.engine.service.ITemplateEngine;
@@ -51,22 +52,32 @@ import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = DefaultTestConfiguration.class)
 public class TemplateEngineTest {
-    private static final String SIMPLE_TEST = "classpath:/cat/albirar/template/engine/test/templates/simpleTemplate.html";
+    private static final String SIMPLE_HTML_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/simpleTemplate.html";
+    private static final String SIMPLE_TXT_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/simpleTemplate.txt";
     private static final String SIMPLE_TEST_H1 = "Text";
     private static final String SIMPLE_TEST_P = "A simple template";
     
-    private static final String VARS_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsTemplate.html";
+    private static final String SIMPLE_TXT_TEMPLATE_TEST_RESULT = "Hello,\n\nThis is a simple text template without variables nor messages\n\nBye!";
+    
+    private static final String VARS_HTML_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsTemplate.html";
+    private static final String VARS_TXT_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsTemplate.txt";
     private static final String VARS_TEST_H1 = "Vars test title";
     
     private static final String VARS_MSG_TEST_MSG_RESOURCE = "cat/albirar/template/engine/test/messages/testMessages";
-    private static final String VARS_MSG_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsMessagesTemplate.html";
+    private static final String VARS_HTML_MSG_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsMessagesTemplate.html";
+    private static final String VARS_TXT_MSG_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsMessagesTemplate.txt";
     private static final String VARS_MSG_TEST_H1 = "Vars &amp; Msg test title";
     private static final String VARS_MSG_TEST_P_EN = "This is a template for test with variables";
     private static final String VARS_MSG_TEST_P_CA = "Aquesta és una plantilla de prova amb variables";
     private static final String VARS_MSG_TEST_P_FR = "Ceci est un modèle de test avec des variables";
     private static final String VARS_MSG_TEST_LBL_EN = "User name:&nbsp;";
-    private static final String VARS_MSG_TEST_LBL_CA = "Nom usuari:&nbsp;";
+    private static final String VARS_MSG_TEST_LBL_CA = "Nom d'usuari:&nbsp;";
     private static final String VARS_MSG_TEST_LBL_FR = "Nom d'utilisateur:&nbsp;";
+    
+    private static final String VARS_MSG_TEST_TXT_H1 = "Vars & Msg test title";
+    private static final String VARS_MSG_TEST_TXT_LBL_EN = "User name: ";
+    private static final String VARS_MSG_TEST_TXT_LBL_CA = "Nom d'usuari: ";
+    private static final String VARS_MSG_TEST_TXT_LBL_FR = "Nom d'utilisateur: ";
     
     private static final TestUser [] VARS_USERS = {
             TestUser.builder()
@@ -104,13 +115,14 @@ public class TemplateEngineTest {
     }
     
     @Test
-    public void testRenderWithoutMessagesNorVariables() {
+    public void testHtmlRenderWithoutMessagesNorVariables() {
         String tx;
         Document parsed;
         
         tx = templateEngine.renderTemplate(TemplateInstanceBean.buildInstance(TemplateDefinitionBean.builder()
                 .name("Test1")
-                .template(SIMPLE_TEST)
+                .contentType(EContentType.HTML)
+                .template(SIMPLE_HTML_TEMPLATE_TEST)
                 .build()).build());
         Assertions.assertNotNull(tx);
         Assertions.assertTrue(StringUtils.hasText(tx));
@@ -124,7 +136,7 @@ public class TemplateEngineTest {
     
     @Test
     @SuppressWarnings("unchecked")
-    public void testRenderWithVariablesNotMessages() {
+    public void testHtmlRenderWithVariablesNotMessages() {
         TemplateInstanceBean tinst;
         Map<String, Object> vars;
         String r;
@@ -137,7 +149,8 @@ public class TemplateEngineTest {
         vars.put("users", Arrays.asList(VARS_USERS));
         tinst = TemplateInstanceBean.buildInstance(TemplateDefinitionBean.builder()
                     .name("Test 2")
-                    .template(VARS_TEST).build())
+                    .contentType(EContentType.HTML)
+                    .template(VARS_HTML_TEMPLATE_TEST).build())
                 .variables(vars)
                 .build()
                 ;
@@ -162,7 +175,7 @@ public class TemplateEngineTest {
     
     @Test
     @SuppressWarnings("unchecked")
-    public void testRenderWithVariablesAndMessages() {
+    public void testHtmlRenderWithVariablesAndMessages() {
         TemplateInstanceBean tinst;
         Map<String, Object> vars;
         String r;
@@ -177,7 +190,8 @@ public class TemplateEngineTest {
         // TEST DEFAULT (EN)
         tinst = TemplateInstanceBean.buildInstance(TemplateDefinitionBean.builder()
                     .name("Test 2")
-                    .template(VARS_MSG_TEST).build(), VARS_MSG_TEST_MSG_RESOURCE)
+                    .contentType(EContentType.HTML)
+                    .template(VARS_HTML_MSG_TEMPLATE_TEST).build(), VARS_MSG_TEST_MSG_RESOURCE)
                 .variables(vars)
                 .build()
                 ;
@@ -245,7 +259,155 @@ public class TemplateEngineTest {
             n++;
         }
     }
+
     
+    @Test
+    public void testTxtRenderWithoutMessagesNorVariables() {
+        String tx;
+        
+        tx = templateEngine.renderTemplate(TemplateInstanceBean.buildInstance(TemplateDefinitionBean.builder()
+                .name("Test1")
+                .template(SIMPLE_TXT_TEMPLATE_TEST)
+                .build()).build());
+        Assertions.assertNotNull(tx);
+        Assertions.assertTrue(StringUtils.hasText(tx));
+        Assertions.assertEquals(SIMPLE_TXT_TEMPLATE_TEST_RESULT, tx);
+    }
+    
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testTxtRenderWithVariablesNotMessages() {
+        TemplateInstanceBean tinst;
+        Map<String, Object> vars;
+        String r;
+        StringBuilder stb;
+        
+        vars = new TreeMap<>();
+        vars.put("title", VARS_TEST_H1);
+        vars.put("users", Arrays.asList(VARS_USERS));
+        tinst = TemplateInstanceBean.buildInstance(TemplateDefinitionBean.builder()
+                    .name("Test 2")
+                    .template(VARS_TXT_TEMPLATE_TEST).build())
+                .variables(vars)
+                .build()
+                ;
+        r = templateEngine.renderTemplate(tinst);
+        Assertions.assertNotNull(r);
+        Assertions.assertTrue(StringUtils.hasText(r));
+        // Prepare expected...
+        stb = new StringBuilder(VARS_TEST_H1)
+                .append("\nThis is a template text for test with variables\n\nUsers:\n")
+                ;
+        for(TestUser usr : VARS_USERS) {
+            stb.append(usr.getName())
+                .append("\n   ")
+                .append(usr.getVar1())
+                .append("\n   ")
+                .append(usr.getVar2())
+                .append("\n   ")
+                .append(usr.getVar3())
+                .append("\n\n")
+                ;
+        }
+        Assertions.assertEquals(stb.toString(), r);
+    }
+
+    
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testTxtRenderWithVariablesAndMessages() {
+        TemplateInstanceBean tinst;
+        Map<String, Object> vars;
+        String r;
+        StringBuilder stb;
+        
+        vars = new TreeMap<>();
+        vars.put("title", VARS_MSG_TEST_TXT_H1);
+        vars.put("users", Arrays.asList(VARS_USERS));
+
+        // TEST DEFAULT (EN)
+        tinst = TemplateInstanceBean.buildInstance(TemplateDefinitionBean.builder()
+                    .name("Test 2")
+                    .template(VARS_TXT_MSG_TEMPLATE_TEST).build(), VARS_MSG_TEST_MSG_RESOURCE)
+                .variables(vars)
+                .build()
+                ;
+        
+        r = templateEngine.renderTemplate(tinst);
+        Assertions.assertNotNull(r);
+        Assertions.assertTrue(StringUtils.hasText(r));
+        
+        // Prepare expected...
+        stb = new StringBuilder(VARS_MSG_TEST_H1)
+                .append("\n\n")
+                .append(VARS_MSG_TEST_P_EN).append("\n\n")
+                ;
+
+        for(TestUser usr : VARS_USERS) {
+            stb.append(VARS_MSG_TEST_TXT_LBL_EN)
+                .append(usr.getName())
+                .append("\n   ")
+                .append(usr.getVar1())
+                .append("\n   ")
+                .append(usr.getVar2())
+                .append("\n   ")
+                .append(usr.getVar3())
+                .append("\n\n")
+                ;
+        }
+        Assertions.assertEquals(stb.toString(), r);
+        
+        // TEST CA
+        r = templateEngine.renderTemplate(tinst.toBuilder().locale(new Locale("ca")).build());
+        Assertions.assertNotNull(r);
+        Assertions.assertTrue(StringUtils.hasText(r));
+
+        // Prepare expected...
+        stb = new StringBuilder(VARS_MSG_TEST_H1)
+                .append("\n\n")
+                .append(VARS_MSG_TEST_P_CA).append("\n\n")
+                ;
+
+        for(TestUser usr : VARS_USERS) {
+            stb.append(VARS_MSG_TEST_TXT_LBL_CA)
+                .append(usr.getName())
+                .append("\n   ")
+                .append(usr.getVar1())
+                .append("\n   ")
+                .append(usr.getVar2())
+                .append("\n   ")
+                .append(usr.getVar3())
+                .append("\n\n")
+                ;
+        }
+        Assertions.assertEquals(stb.toString(), r);
+        
+        // TEST FR
+        r = templateEngine.renderTemplate(tinst.toBuilder().locale(new Locale("fr")).build());
+        Assertions.assertNotNull(r);
+        Assertions.assertTrue(StringUtils.hasText(r));
+
+        // Prepare expected...
+        stb = new StringBuilder(VARS_MSG_TEST_H1)
+                .append("\n\n")
+                .append(VARS_MSG_TEST_P_FR).append("\n\n")
+                ;
+
+        for(TestUser usr : VARS_USERS) {
+            stb.append(VARS_MSG_TEST_TXT_LBL_FR)
+                .append(usr.getName())
+                .append("\n   ")
+                .append(usr.getVar1())
+                .append("\n   ")
+                .append(usr.getVar2())
+                .append("\n   ")
+                .append(usr.getVar3())
+                .append("\n\n")
+                ;
+        }
+        Assertions.assertEquals(stb.toString(), r);
+    }
+
     private void assertUser(TestUser user, Element element, String label) {
         Elements vuVars;
         

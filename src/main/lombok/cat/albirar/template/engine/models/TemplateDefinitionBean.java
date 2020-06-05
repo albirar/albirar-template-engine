@@ -19,12 +19,16 @@
 package cat.albirar.template.engine.models;
 
 import java.io.Serializable;
+import java.nio.charset.Charset;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.context.ApplicationContext;
 
+import cat.albirar.template.engine.EContentType;
 import lombok.AllArgsConstructor;
+import lombok.Builder.Default;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,6 +45,10 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class TemplateDefinitionBean implements Serializable {
     private static final long serialVersionUID = 7550617345858079032L;
+    
+    public static final String DEFAULT_CHARSET = "utf-8";
+    public static final EContentType DEFAULT_CONTENT_TYPE = EContentType.TEXT_PLAIN;
+    
 
     /**
      * A simbolic name for this template.
@@ -51,9 +59,27 @@ public class TemplateDefinitionBean implements Serializable {
 
     /**
      * The template resource path, can be any of the resources resolved by {@link ApplicationContext#getResource(String)}.
+     * @return The template resource path
+     * @param template The template resource path
      * @see ApplicationContext#getResource(String)
      */
     @Setter(onParam_ = { @NotBlank })
     @NotBlank
     private String template;
+    
+    /**
+     * The resulting content type of this template.
+     */
+    @Setter(onParam_ = { @NotNull })
+    @NotNull
+    @Default
+    private EContentType contentType = DEFAULT_CONTENT_TYPE;
+    
+    /**
+     * The charset of resulting content from this template.
+     */
+    @Setter(onParam_ = { @NotNull })
+    @NotNull
+    @Default
+    private Charset charSet = Charset.forName(DEFAULT_CHARSET);
 }

@@ -18,8 +18,6 @@
  */
 package cat.albirar.template.engine.test.configuration;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -33,6 +31,4 @@ import cat.albirar.template.engine.configuration.TemplateEngineConfiguration;
 @Configuration
 @Import(TemplateEngineConfiguration.class)
 public class DefaultTestConfiguration {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultTestConfiguration.class);
-
 }

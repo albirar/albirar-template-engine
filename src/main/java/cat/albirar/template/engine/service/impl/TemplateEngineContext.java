@@ -33,7 +33,7 @@ import cat.albirar.template.engine.models.TemplateInstanceBean;
 public class TemplateEngineContext implements IContext {
     private TemplateInstanceBean templateInstance;
     /**
-     * 
+     * Constructor.
      */
     public TemplateEngineContext(TemplateInstanceBean t) {
         this.templateInstance = t;
@@ -69,5 +69,11 @@ public class TemplateEngineContext implements IContext {
     public Object getVariable(String name) {
         return templateInstance.getVariables().get(name);
     }
-
+    /**
+     * The original template instance.
+     * @return The template instance
+     */
+    public TemplateInstanceBean getTemplateInstance() {
+        return templateInstance;
+    }
 }
