@@ -21,6 +21,9 @@ package cat.albirar.template.engine.service.impl;
 import java.util.Locale;
 import java.util.Set;
 
+import javax.validation.ValidationException;
+
+import org.springframework.util.StringUtils;
 import org.thymeleaf.context.IContext;
 
 import cat.albirar.template.engine.models.TemplateInstanceBean;
@@ -36,6 +39,9 @@ public class TemplateEngineContext implements IContext {
      * Constructor.
      */
     public TemplateEngineContext(TemplateInstanceBean t) {
+        if(t == null) {
+            throw new ValidationException();
+        }
         this.templateInstance = t;
     }
     /**
@@ -51,6 +57,9 @@ public class TemplateEngineContext implements IContext {
      */
     @Override
     public boolean containsVariable(String name) {
+        if(!StringUtils.hasText(name)) {
+            throw new ValidationException();
+        }
         return templateInstance.getVariables().containsKey(name);
     }
 
@@ -67,6 +76,9 @@ public class TemplateEngineContext implements IContext {
      */
     @Override
     public Object getVariable(String name) {
+        if(!StringUtils.hasText(name)) {
+            throw new ValidationException();
+        }
         return templateInstance.getVariables().get(name);
     }
     /**
