@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd"
+	name="Albirar Communications Library">
+	<bannerLeft>
+		<name>Albirar Template Engine</name>
+		<alt>Albirar Template Engine</alt>
+		<src>img/logo-16x4.png</src>
+		<href>/</href>
+		<title>Albirar Template Engine</title>
+	</bannerLeft>
+	<bannerRight>
+		<name>Albirar</name>
+		<alt>Albirar</alt>
+		<src>img/logo-albirar-50x50.png</src>
+		<href>https://albirar.cat</href>
+		<title>Albirar</title>
+	</bannerRight>
+	<publishDate position="bottom" format="dd-MM-yyy" />
+	<version position="bottom" />
+	<!-- <skin> -->
+	<!-- <groupId>lt.velykis.maven.skins</groupId> -->
+	<!-- <artifactId>reflow-maven-skin</artifactId> -->
+	<!-- <version>1.1.1</version> -->
+	<!-- </skin> -->
+	<skin>
+		<groupId>com.bernardomg.maven.skins</groupId>
+		<artifactId>docs-maven-skin</artifactId>
+		<version>2.0.10</version>
+	</skin>
+	<custom>
+		<!-- <reflowSkin> -->
+		<!-- <theme>bootswatch-readable</theme> -->
+		<!-- <highlightJs>true</highlightJs> -->
+		<!-- <shortTitle>Home</shortTitle> -->
+		<!-- <titleTemplate>Albirar Template Engine</titleTemplate> -->
+		<!-- <breadcrumbs>false</breadcrumbs> -->
+		<!-- <brand> -->
+		<!-- <name>Albirar Template Engine</name> -->
+		<!-- <href>https://github.com/albirar/albirar-template-engine</href> -->
+		<!-- </brand> -->
+		<!-- <slogan>A simple template engine to transform templates into HTML 
+			or -->
+		<!-- TXT</slogan> -->
+		<!-- <toc>top</toc> -->
+		<!-- <topNav>Documentation|Info and Reports|Code|Releases</topNav> -->
+		<!-- <pages> -->
+		<!-- <index project="albirar-template-engine"> -->
+		<!-- <sections> -->
+		<!-- <body /> -->
+		<!-- <sidebar /> -->
+		<!-- </sections> -->
+		<!-- </index> -->
+		<!-- <usage> -->
+		<!-- <sections> -->
+		<!-- <body /> -->
+		<!-- <sidebar /> -->
+		<!-- </sections> -->
+		<!-- </usage> -->
+		<!-- <project-info> -->
+		<!-- <highlightJs>false</highlightJs> -->
+		<!-- <toc>false</toc> -->
+		<!-- </project-info> -->
+		<!-- <project-reports> -->
+		<!-- <highlightJs>false</highlightJs> -->
+		<!-- <toc>false</toc> -->
+		<!-- </project-reports> -->
+		<!-- </pages> -->
+		<!-- </reflowSkin> -->
+
+		<skinConfig>
+			<keywords>Maven Site, fix, HTML5</keywords>
+			<descriptionUrl>Check the documentation for the Docs Maven Skin</descriptionUrl>
+			<topNav>
+				<menu>Documentation</menu>
+				<menu>Info and Reports</menu>
+			</topNav>
+			<bottomNav>
+				<menu>Code</menu>
+				<menu>Releases</menu>
+			</bottomNav>
+			<iconNav>
+				<menu>Icons</menu>
+			</iconNav>
+		</skinConfig>
+	</custom>
+
+	<body>
+		<head>
+			<![CDATA[<link rel="icon" type="image/png" href="img/logo-albirar-icon.png"></link>]]>
+		</head>
+		<breadcrumbs>
+			<item name="Home" href="/" />
+		</breadcrumbs>
+		<menu name="Documentation" inherit="top">
+			<item name="Usage" href="usage.html" />
+		</menu>
+		<menu name="Info and Reports" inherit="top">
+			<item name="Info" href="project-info.html" />
+			<item name="Reports" href="project-reports.html" />
+			<item name="JavaDocs" href="apidocs/" />
+		</menu>
+		<menu name="Code" inherit="top">
+			<item name="SCM" href="${project.scm.url}">
+				<description>GitHub</description>
+			</item>
+			<!-- 
+			<item name="CI" href="${project.ciManagement.url}">
+				<description>${project.ciManagement.system}</description>
+			</item>
+			 -->
+			<item name="Issues" href="${project.issueManagement.url}">
+				<description>${project.issueManagement.system}</description>
+			</item>
+		</menu>
+		<menu name="Releases" inherit="top">
+			<item name="Maven Central" href="${mavenURL}" />
+		</menu>
+	</body>
+</project>

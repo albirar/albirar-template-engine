@@ -13,9 +13,13 @@
 	<version>2.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>albirar-template-engine</name>
-	<description>A template engine to transform Thymeleaf templates into HTML for email purposes</description>
+	<description>A simple template engine to transform templates into HTML or TXT</description>
 	<url>https://github.com/albirar/albirar-template-engine</url>
 
+	<properties>
+		<mavenURL>http://mvnrepository.com/artifact/${project.groupId}/${project.artifactId}</mavenURL>
+	</properties>
+	
 	<licenses>
 		<license>
 			<name>GNU General Public License v3.0</name>
@@ -28,6 +32,11 @@
 		<tag>HEAD</tag>
 		<url>https://github.com/albirar/albirar-template-engine</url>
 	</scm>
+	
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/albirar/albirar-template-engine/issues</url>
+	</issueManagement>
 
 	<developers>
 		<developer>
@@ -64,6 +73,31 @@
 		</dependency>
 	</dependencies>
 
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependency-info</report>
+							<report>dependencies</report>
+							<report>team</report>
+							<report>ci-management</report>
+							<report>licenses</report>
+							<report>scm</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -74,7 +108,33 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 			</plugin>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>com.bernardomg.maven.skins</groupId>
+						<artifactId>docs-maven-skin</artifactId>
+						<version>2.0.10</version>
+					</dependency>
+					<dependency>
+						<groupId>com.bernardomg.velocity</groupId>
+						<artifactId>maven-site-fixer</artifactId>
+						<version>1.2.4</version>
+					</dependency>
+					<!-- <dependency> -->
+					<!-- <groupId>lt.velykis.maven.skins</groupId> -->
+					<!-- <artifactId>reflow-velocity-tools</artifactId> -->
+					<!-- <version>1.1.1</version> -->
+					<!-- </dependency> -->
+					<!-- Reflow skin requires Velocity >= 1.7 -->
+					<!-- <dependency> -->
+					<!-- <groupId>org.apache.velocity</groupId> -->
+					<!-- <artifactId>velocity</artifactId> -->
+					<!-- <version>1.7</version> -->
+					<!-- </dependency> -->
+				</dependencies>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -86,6 +146,18 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<!-- Override resource filtering delimiters to avoid filtering Velocity 
+						variables, which have the same pattern ${replace.me}. Instead, using @replace.me@. -->
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+					<delimiters>
+						<delimiter>@</delimiter>
+					</delimiters>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
