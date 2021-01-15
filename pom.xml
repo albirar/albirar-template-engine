@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>cat.albirar</groupId>
 		<artifactId>albirar-root-dependencies</artifactId>
-		<version>2.0.0</version>
+		<version>2.0.6-SNAPSHOT</version>
 	</parent>
 	<groupId>cat.albirar.lib</groupId>
 	<artifactId>albirar-template-engine</artifactId>
@@ -37,6 +37,11 @@
 		<system>GitHub Issues</system>
 		<url>https://github.com/albirar/albirar-template-engine/issues</url>
 	</issueManagement>
+	
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.com/github/albirar/albirar-template-engine</url>
+	</ciManagement>
 
 	<developers>
 		<developer>
