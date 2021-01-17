@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>cat.albirar.app</groupId>
+		<groupId>cat.albirar</groupId>
 		<artifactId>albirar-root-dependencies</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>2.0.7-SNAPSHOT</version>
 	</parent>
+	<groupId>cat.albirar.lib</groupId>
 	<artifactId>albirar-template-engine</artifactId>
+	<version>2.0.0</version>
 	<packaging>jar</packaging>
 	<name>albirar-template-engine</name>
-	<description>A template engine to transform Thymeleaf templates into HTML for email purposes</description>
+	<description>A simple template engine to transform templates into HTML or TXT</description>
+	<url>https://github.com/albirar/albirar-template-engine</url>
 
+	<properties>
+		<mavenURL>http://mvnrepository.com/artifact/${project.groupId}/${project.artifactId}</mavenURL>
+	</properties>
+	
+	<licenses>
+		<license>
+			<name>GNU General Public License v3.0</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:https://github.com/albirar/albirar-template-engine.git</connection>
+		<tag>HEAD</tag>
+		<url>https://github.com/albirar/albirar-template-engine</url>
+	</scm>
+	
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/albirar/albirar-template-engine/issues</url>
+	</issueManagement>
+	
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.com/github/albirar/albirar-template-engine</url>
+	</ciManagement>
+
+	<developers>
+		<developer>
+			<id>ofornes</id>
+			<name>Octavi Fornés</name>
+			<email>ofornes@albirar.cat</email>
+			<roles>
+				<role>product owner</role>
+				<role>developer</role>
+			</roles>
+			<timezone>Europe/Madrid</timezone>
+		</developer>
+	</developers>
 
 	<dependencies>
 		<!-- Templating -->
@@ -26,7 +66,7 @@
 			<artifactId>thymeleaf-spring5</artifactId>
 			<version>${spring-thymeleaf.version}</version>
 		</dependency>
-		
+
 		<!-- TEST -->
 		<dependency>
 			<groupId>org.jsoup</groupId>
@@ -35,4 +75,77 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependency-info</report>
+							<report>dependencies</report>
+							<report>team</report>
+							<report>ci-management</report>
+							<report>licenses</report>
+							<report>scm</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>com.bernardomg.maven.skins</groupId>
+						<artifactId>docs-maven-skin</artifactId>
+						<version>2.0.10</version>
+					</dependency>
+					<dependency>
+						<groupId>com.bernardomg.velocity</groupId>
+						<artifactId>maven-site-fixer</artifactId>
+						<version>1.2.4</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+					<delimiters>
+						<delimiter>@</delimiter>
+					</delimiters>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
