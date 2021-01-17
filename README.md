@@ -2,6 +2,8 @@
 
 A simple template engine to transform templates into HTML or TXT.
 
+Travis-CI: ![Travis-CI](https://api.travis-ci.com/albirar/albirar-template-engine.svg?branch=develop)
+
 # Requirements
 
 This library depends on spring framework MVC and thymeleaf.
