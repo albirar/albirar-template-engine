@@ -10,4 +10,5 @@ before_script:
 script:
   - mvn test -B
 after_script:
-  - ./cc-test-reporter after-build -t cobertura --exit-code $TRAVIS_TEST_RESULT ./target/site/cobertura/coverage.xml
+  - ./cc-test-reporter format-coverage ./target/site/cobertura/coverage.xml -t cobertura
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
