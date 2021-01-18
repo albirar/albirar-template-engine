@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>cat.albirar</groupId>
@@ -17,7 +19,7 @@
 	<properties>
 		<mavenURL>http://mvnrepository.com/artifact/${project.groupId}/${project.artifactId}</mavenURL>
 	</properties>
-	
+
 	<licenses>
 		<license>
 			<name>GNU General Public License v3.0</name>
@@ -30,12 +32,12 @@
 		<tag>HEAD</tag>
 		<url>https://github.com/albirar/albirar-template-engine</url>
 	</scm>
-	
+
 	<issueManagement>
 		<system>GitHub Issues</system>
 		<url>https://github.com/albirar/albirar-template-engine/issues</url>
 	</issueManagement>
-	
+
 	<ciManagement>
 		<system>Travis CI</system>
 		<url>https://travis-ci.com/github/albirar/albirar-template-engine</url>
@@ -134,6 +136,12 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
