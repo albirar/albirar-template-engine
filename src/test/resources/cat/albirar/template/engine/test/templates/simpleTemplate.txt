@@ -1,0 +1,5 @@
+Hello,
+
+This is a simple text template without variables nor messages
+
+Bye!

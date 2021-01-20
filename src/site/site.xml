@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd"
+	name="Albirar Template Engine" combine.self="merge">
+	<custom>
+		<reflowSkin>
+			<brand>
+				<name>Albirar Template Engine</name>
+				<href>index.html</href>
+			</brand>
+			<bottomDescription><![CDATA[
+        A small template engine with Thymeleaf+Spring language
+      ]]></bottomDescription>
+			<pages>
+				<index>
+					<sections>
+						<columns>1</columns>
+						<body />
+						<sidebar />
+					</sections>
+					<shortTitle>Home</shortTitle>
+					<highlightJs>true</highlightJs>
+				</index>
+				<dependency>
+					<sections>
+						<columns>1</columns>
+						<body />
+						<sidebar />
+					</sections>
+					<shortTitle>Acquire</shortTitle>
+					<highlightJs>true</highlightJs>
+				</dependency>
+				<usage>
+					<sections>
+						<columns>1</columns>
+						<body />
+						<sidebar />
+					</sections>
+					<shortTitle>Usage</shortTitle>
+					<highlightJs>true</highlightJs>
+				</usage>
+			</pages>
+		</reflowSkin>
+	</custom>
+
+	<body>
+		<menu name="Documentation">
+			<item name="Add to your project" href="dependency.html" />
+			<item name="Usage" href="usage.html" />
+		</menu>
+	</body>
+</project>

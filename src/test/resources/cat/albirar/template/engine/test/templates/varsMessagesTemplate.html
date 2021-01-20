@@ -1,0 +1,12 @@
+<!-- TEST FOR VARIABLE AND MESSAGE SUBSTITUTION -->
+<h1 th:text="${title}">Title</h1>
+<p th:text="#{test.description}">This is a template for test with variables</p>
+<ul>
+	<li class="user" th:each="usr : ${users}"><span th:text="#{test.uname}">User:&nbsp</span><strong th:text="${usr.name}">Name</strong>
+	   <ol>
+	      <li th:text="${usr.var1}">Var1</li>
+	      <li th:text="${usr.var2}">Var2</li>
+	      <li th:text="${usr.var3}">Var3</li>
+	   </ol>
+	</li>
+</ul>

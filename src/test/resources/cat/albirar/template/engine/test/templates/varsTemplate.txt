@@ -1,0 +1,10 @@
+[# th:text="${title}"]Title[/]
+This is a template text for test with variables
+
+Users:
+[# th:each="usr : ${users}"][# th:text="${usr.name}"]Name[/]
+   [# th:text="${usr.var1}"]Var1[/]
+   [# th:text="${usr.var2}"]Var2[/]
+   [# th:text="${usr.var3}"]Var3[/]
+
+[/]
