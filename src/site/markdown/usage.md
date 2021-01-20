@@ -1,6 +1,6 @@
 # Usage
 
-Once dependencies has been set, usage is easy.
+Once [dependencies has been set](dependency.html "Add to your project") , usage is easy.
 
 ## Configuration
 
