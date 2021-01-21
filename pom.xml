@@ -8,7 +8,7 @@
 	</parent>
 	<groupId>cat.albirar.lib</groupId>
 	<artifactId>albirar-template-engine</artifactId>
-	<version>2.0.1-SNAPSHOT</version>
+	<version>2.0.1</version>
 	<packaging>jar</packaging>
 	<name>Albirar Template Engine</name>
 	<description>A simple template engine to transform templates into HTML or TXT</description>
