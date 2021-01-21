@@ -2,74 +2,68 @@
 <project xmlns="http://maven.apache.org/DECORATION/1.8.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd"
-	name="Albirar Communications Library">
+	name="${name}">
+	<publishDate position="left" format="dd-MM-yyy" />
+	<version position="left" />
+	
 	<bannerLeft>
-		<name>Albirar Template Engine</name>
-		<alt>Albirar Template Engine</alt>
-		<src>img/logo-16x4.png</src>
 		<href>/</href>
-		<title>Albirar Template Engine</title>
+		<title>${name}</title>
+		<name>${name}</name>
 	</bannerLeft>
-	<bannerRight>
-		<name>Albirar</name>
-		<alt>Albirar</alt>
-		<src>img/logo-albirar-50x50.png</src>
-		<href>https://albirar.cat</href>
-		<title>Albirar</title>
-	</bannerRight>
-	<publishDate position="bottom" format="dd-MM-yyy" />
-	<version position="bottom" />
+	
+	<poweredBy>
+		<logo name="Albirar" title="Albirar" alt="Albirar" href="https://albirar.cat" img="images/logo-albirar-icon.png" />
+	</poweredBy>
+	
 	<skin>
-		<groupId>com.bernardomg.maven.skins</groupId>
-		<artifactId>docs-maven-skin</artifactId>
-		<version>2.0.10</version>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.9</version>
 	</skin>
+
 	<custom>
-		<skinConfig>
-			<keywords>Maven Site, fix, HTML5</keywords>
-			<descriptionUrl>Check the documentation for the Docs Maven Skin</descriptionUrl>
-			<topNav>
-				<menu>Documentation</menu>
-				<menu>Info and Reports</menu>
-			</topNav>
-			<bottomNav>
-				<menu>Code</menu>
-				<menu>Releases</menu>
-			</bottomNav>
-			<iconNav>
-				<menu>Icons</menu>
-			</iconNav>
-		</skinConfig>
+		<fluidoSkin>
+			<topBarEnabled>true</topBarEnabled>
+			<sideBarEnabled>false</sideBarEnabled>
+		</fluidoSkin>
 	</custom>
 
 	<body>
 		<head>
-			<![CDATA[<link rel="icon" type="image/png" href="img/logo-albirar-icon.png"></link>]]>
+			<![CDATA[<link rel="icon" type="image/png" href="images/logo-albirar-icon.png"></link>]]>
 		</head>
-		<breadcrumbs>
-			<item name="Home" href="/" />
-		</breadcrumbs>
-		<menu name="Documentation" inherit="top">
+		<menu name="Documentation" title="Documentation">
+			<item name="Add to your project" href="dependency.html" />
 			<item name="Usage" href="usage.html" />
+			<item name="Github" href="${scm.url}"  />
 		</menu>
-		<menu name="Info and Reports" inherit="top">
+		<menu name="Info and Reports" title="Info and Reports">
 			<item name="Info" href="project-info.html" />
 			<item name="Reports" href="project-reports.html" />
-			<item name="JavaDocs" href="apidocs/" />
+			<item name="JavaDocs" href="apidocs" />
 		</menu>
-		<menu name="Code" inherit="top">
-			<item name="SCM" href="${project.scm.url}">
-				<description>GitHub</description>
+		<menu name="Code" title="Code">
+			<item name="Source code" href="${scm.url}"
+				title="${scm.system}"
+				img="images/GitHub-Mark-32px.png">
+				<description>${scm.system}</description>
 			</item>
-			<item name="CI" href="${project.ciManagement.url}">
-				<description>${project.ciManagement.system}</description>
+			<item name="CI" href="${ciManagement.url}"
+				title="${ciManagement.system}"
+				img="images/TravisCI-32px.png">
+				<description>${ciManagement.system}</description>
 			</item>
-			<item name="Issues" href="${project.issueManagement.url}">
-				<description>${project.issueManagement.system}</description>
+			<item name="Issues" href="${issueManagement.url}"
+				title="${issueManagement.system} Issues"
+				img="images/Octocat-32px.png">
+				<description>${issueManagement.system} Issues</description>
 			</item>
 		</menu>
-		<menu name="Releases" inherit="top">
-			<item name="Maven Central" href="${mavenURL}" />
+		<menu name="Releases" title="Releases">
+			<item name="Maven Central" title="Maven Central"
+				img="images/maven-logo-black-on-white-32px.png"
+				href="https://search.maven.org/artifact/${groupId}/${artifactId}" />
 		</menu>
 	</body>
 </project>
