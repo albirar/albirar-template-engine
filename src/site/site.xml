@@ -42,11 +42,12 @@
 			<item name="Info" href="project-info.html" />
 			<item name="Reports" href="project-reports.html" />
 			<item name="JavaDocs" href="apidocs" />
+			<item name="Status" href="status.html" />
 		</menu>
 		<menu name="Code" title="Code">
 			<item name="Source code" href="${scm.url}"
 				title="${scm.system}"
-				img="images/GitHub-Mark-32px.png">
+				img="images/GitHub-Mark-32px.png" >
 				<description>${scm.system}</description>
 			</item>
 			<item name="CI" href="${ciManagement.url}"

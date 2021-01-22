@@ -1,0 +1,45 @@
+a.newWindow {
+    padding-right: inherit;
+}
+
+a.externalLink[href^=http] {
+	background-image: none;
+    padding-right: inherit;
+}
+a.externalLink[href$=".asc"] {
+	background-image: none;
+    padding-right: inherit;
+}
+a.externalLink[href$=".jpg"],
+a.externalLink[href$=".jpeg"],
+a.externalLink[href$=".gif"],
+a.externalLink[href$=".png"] {
+	background-image: none;
+    padding-right: inherit;
+}
+a.externalLink[href$=".tar.gz"],
+a.externalLink[href$=".zip"] {
+	background-image: none;
+    padding-right: inherit;
+}
+a.externalLink[href$=".md5"],
+a.externalLink[href$=".sha1"] {
+	background-image: none;
+    padding-right: inherit;
+}
+a.externalLink[href^=https] {
+	background-image: none;
+    padding-right: inherit;
+}
+a.externalLink[href^=file] {
+	background-image: none;
+    padding-right: inherit;
+}
+a.externalLink[href^=ftp] {
+	background-image: none;
+    padding-right: inherit;
+}
+a.externalLink[href^=mailto] {
+	background-image: none;
+    padding-right: inherit;
+}
