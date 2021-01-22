@@ -1,14 +1,14 @@
-# Usage
+## Usage
 
 Once [dependencies has been set](dependency.html "Add to your project") , usage is easy.
 
-## Configuration
+### Configuration
 
 First of all, should to configure. This library is auto-configurable with spring boot.
 
 If not, you should to import the configuration class `cat.albirar.template.engine.configuration.TemplateEngineConfiguration`.
 
-## Engine
+### Engine
 
 The templates are files that should to be placed in the classpath, as a resource.
 
@@ -29,7 +29,7 @@ By default, a template engine implementation is provided. This engine works with
 Remember to use the interface, so concrete implementations can be selected through configuration.
 
 
-## Template definition
+### Template definition
 
 A template definition is a general applicable template that should to be *instantiated* in order to use them.
 
@@ -46,7 +46,7 @@ tDefinition = TemplateDefinitionBean.builder()
                ;
 ```
 
-## Template instantiation
+### Template instantiation
 
 Once the definition is created, a `cat.albirar.template.engine.models.TemplateInstanceBean` can be created from definition and set the specific aspects of each rendering, like variables and messages.
 
@@ -69,7 +69,7 @@ tInstance = TemplateInstanceBean.buildInstance(tDefinition)
                  .build()
                  ;
 ```
-## Template rendering
+### Template rendering
 
 With the template instance, you can do the rendering:
 

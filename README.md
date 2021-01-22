@@ -2,18 +2,18 @@
 
 A simple template engine to transform templates into HTML or TXT.
 
-| Service             | Status                                                       |
-| ------------------- | ------------------------------------------------------------ |
-| Travis-CI (master)  | ![Travis-CI](https://api.travis-ci.com/albirar/albirar-template-engine.svg?branch=master) |
-| Travis-CI (develop) | ![Travis-CI](https://api.travis-ci.com/albirar/albirar-template-engine.svg?branch=develop) |
-| Code coverage       | ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/albirar/albirar-template-engine) |
-| Maintainability     | ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/albirar/albirar-template-engine) |
-| Maven Central       | ![Maven Central](https://img.shields.io/maven-central/v/cat.albirar.lib/albirar-template-engine) |
-
 # Requirements
 
 This library depends on spring framework MVC and thymeleaf.
 Can be used with spring-framework or spring-boot.
+
+![Jdk 1.8](https://img.shields.io/badge/Jdk-1.8-informational)
+![Maven 3.6](https://img.shields.io/badge/Maven-3.6-informational)
+![Spring boot 2.3.x](https://img.shields.io/badge/Spring%20Boot-2.3-informational)
+![Spring Framework 5.2.x](https://img.shields.io/badge/Spring%20Framework-5.2-informational)
+![Thymeleaf 3.0.x](https://img.shields.io/badge/Thymeleaf-3.0-informational)
+
+
 
 # Usage
 
