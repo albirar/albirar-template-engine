@@ -36,7 +36,7 @@
 		<menu name="Documentation" title="Documentation">
 			<item name="Add to your project" href="dependency.html" />
 			<item name="Usage" href="usage.html" />
-			<item name="Github" href="${scm.url}"  />
+			<item name="Github" href="scm.html"  />
 		</menu>
 		<menu name="Info and Reports" title="Info and Reports">
 			<item name="Info" href="project-info.html" />
