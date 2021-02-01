@@ -4,9 +4,27 @@ Once [dependencies has been set](dependency.html "Add to your project") , usage 
 
 ## Configuration
 
-First of all, should to configure. This library is auto-configurable with spring boot.
+First of all, should to configure. This library is auto-configurable with the spring boot annotation [@EnableAutoConfiguration](https://docs.spring.io/spring-boot/docs/2.3.x/api/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html):
 
-If not, you should to import the configuration class `cat.albirar.template.engine.configuration.TemplateEngineConfiguration`.
+```java
+@SpringBootApplication
+@EnableAutoConfiguration
+public class DemoApplication {
+    
+    
+```
+
+Also you can use the annotation [@AutoconfigureTemplateEngine](https://albirar.github.io/albirar-template-engine/apidocs/cat/albirar/template/engine/configuration/AutoconfigureTemplateEngine.html):
+
+```java
+@SpringBootApplication
+@AutoconfigureTemplateEngine
+public class DemoApplication {
+    
+    
+```
+
+If not, you can import the configuration class `cat.albirar.template.engine.configuration.TemplateEngineConfiguration`.
 
 ## Engine
 
