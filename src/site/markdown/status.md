@@ -1,6 +1,4 @@
-# albirar-template-engine
-
-A simple template engine to transform templates into HTML or TXT.
+## Status
 
 | Item | Status |
 | ---- | ------ |
@@ -11,13 +9,4 @@ A simple template engine to transform templates into HTML or TXT.
 | Technical Debt | [![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/albirar/albirar-template-engine?logo=code-climate)](https://codeclimate.com/github/albirar/albirar-template-engine) |
 | Maven Central | [![Maven Central](https://img.shields.io/maven-central/v/cat.albirar.lib/albirar-template-engine?logo=apache-maven "Maven Central version")](https://search.maven.org/artifact/cat.albirar.lib/albirar-template-engine) |
 | Dependencies | [![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/albirar/albirar-template-engine)](https://libraries.io/github/albirar/albirar-template-engine) |
-
-# Requirements
-
-This library depends on spring framework MVC and thymeleaf.
-Can be used with spring-framework or spring-boot.
-
-# Documentation
-
-See https://albirar.github.io/albirar-template-engine
 
