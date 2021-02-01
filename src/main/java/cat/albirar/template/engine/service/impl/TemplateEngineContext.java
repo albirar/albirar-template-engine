@@ -29,7 +29,8 @@ import org.thymeleaf.context.IContext;
 import cat.albirar.template.engine.models.TemplateInstanceBean;
 
 /**
- * The context for template engine rendering.
+ * The context for template instance rendering.
+ * Set the context for render a {@link TemplateInstanceBean template instance}, like {@link Locale}, parameters, etc.
  * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
  * @since 1.0.0
  */

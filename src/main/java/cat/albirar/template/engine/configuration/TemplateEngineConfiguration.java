@@ -20,11 +20,11 @@ import static cat.albirar.template.engine.configuration.PropertiesTemplate.CHARS
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
@@ -38,29 +38,31 @@ import cat.albirar.template.engine.service.impl.TemplateEngineImpl;
  * @since 1.0.0
  */
 @Configuration
+@AutoConfigureOrder(Integer.MAX_VALUE)
 @ComponentScan(basePackageClasses = {ITemplateEngine.class, TemplateEngineImpl.class})
 public class TemplateEngineConfiguration {
-    
+    /**
+     * The {@link SpringTemplateEngine} to use on rendering.
+     * @param resolver The resolver for resources
+     * @return The {@link SpringTemplateEngine} configured to use them
+     */
     @Bean
+    @ConditionalOnMissingBean
     public SpringTemplateEngine templateEngine(@Autowired SpringResourceTemplateResolver resolver) {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(resolver);
         return templateEngine;
     }
-
+    /**
+     * The template resolver for thymeleaf
+     * @param charset
+     * @return
+     */
     @Bean
+    @ConditionalOnMissingBean
     public SpringResourceTemplateResolver thymeleafTemplateResolver(@Value(CHARSET_VALUE) String charset) {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setCharacterEncoding(charset);
         return templateResolver;
-    }
-
-    @Bean
-    public LocalValidatorFactoryBean validator() {
-        return new LocalValidatorFactoryBean();
-    }
-    @Bean
-    public MethodValidationPostProcessor validationPostProcessor() {
-        return new MethodValidationPostProcessor();
     }
 }
