@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="1.0" branch-rate="1.0" lines-covered="39" lines-valid="39" branches-covered="10" branches-valid="10" complexity="1.9090909090909092" version="2.1.1" timestamp="1612182976286">
+<coverage line-rate="1.0" branch-rate="1.0" lines-covered="39" lines-valid="39" branches-covered="10" branches-valid="10" complexity="1.9090909090909092" version="2.1.1" timestamp="1612183575064">
 	<sources>
 		<source>/home/octavi/Dropbox/feina/projectes/fam/albirar-template-engine/src/main/java</source>
 		<source>--source</source>
