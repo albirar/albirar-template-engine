@@ -14,3 +14,4 @@ after_script:
   - ./cc-test-reporter format-coverage ./target/site/cobertura/coverage.xml -t cobertura
   - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - bash <(curl -s https://codecov.io/bash)
