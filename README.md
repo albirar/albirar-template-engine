@@ -1,4 +1,4 @@
-# Albirar Template Engine
+# albirar-template-engine
 
 A simple template engine to transform templates into HTML or TXT.
 
@@ -13,10 +13,7 @@ Can be used with spring-framework or spring-boot.
 ![Spring Framework 5.2.x](https://img.shields.io/badge/Spring%20Framework-5.2-informational)
 ![Thymeleaf 3.0.x](https://img.shields.io/badge/Thymeleaf-3.0-informational)
 
-# Status
-See [Status](https://albirar.github.io/albirar-template-engine/status.html "Status")
+# Documentation
 
-# Usage
-
-See [Documentation](https://albirar.github.io/albirar-template-engine "Documentation")
+See https://albirar.github.io/albirar-template-engine
 
