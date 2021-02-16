@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/DECORATION/1.8.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd"
-	name="${name}">
-	<publishDate position="left" format="dd-MM-yyy" />
+	name="${this.name}">
+	<publishDate position="left" format="dd-MM-yyy HH:mm" />
 	<version position="left" />
 	
 	<bannerLeft>
 		<href>/</href>
-		<title>${name}</title>
-		<name>${name}</name>
+		<title>${this.name}</title>
+		<name>${this.name}</name>
 	</bannerLeft>
 	
 	<poweredBy>
@@ -45,26 +45,26 @@
 			<item name="Status" href="status.html" />
 		</menu>
 		<menu name="Code" title="Code">
-			<item name="Source code" href="${scm.url}"
-				title="${scm.system}"
+			<item name="Source code" href="${this.scm.url}"
+				title="${this.scm.system}"
 				img="images/GitHub-Mark-32px.png" >
-				<description>${scm.system}</description>
+				<description>${this.scm.system}</description>
 			</item>
-			<item name="CI" href="${ciManagement.url}"
-				title="${ciManagement.system}"
+			<item name="CI" href="${this.ciManagement.url}"
+				title="${this.ciManagement.system}"
 				img="images/TravisCI-32px.png">
-				<description>${ciManagement.system}</description>
+				<description>${this.ciManagement.system}</description>
 			</item>
-			<item name="Issues" href="${issueManagement.url}"
-				title="${issueManagement.system} Issues"
+			<item name="Issues" href="${this.issueManagement.url}"
+				title="${this.issueManagement.system} Issues"
 				img="images/Octocat-32px.png">
-				<description>${issueManagement.system} Issues</description>
+				<description>${this.issueManagement.system} Issues</description>
 			</item>
 		</menu>
 		<menu name="Releases" title="Releases">
 			<item name="Maven Central" title="Maven Central"
 				img="images/maven-logo-black-on-white-32px.png"
-				href="https://search.maven.org/artifact/${groupId}/${artifactId}" />
+				href="https://search.maven.org/artifact/${this.groupId}/${this.artifactId}" />
 		</menu>
 	</body>
 </project>
