@@ -1,6 +1,6 @@
-#[[# Add to your project
+#[[## Add to your project
 
-## MVN users
+### MVN users
 
 Add the dependency to your project:
 
@@ -12,7 +12,7 @@ Add the dependency to your project:
 </dependency>
 ```
 
-## Gradle users
+### Gradle users
 
 ```gradle
 implementation 'cat.albirar.lib:albirar-template-engine:]]#${project.version}#[[']]#
