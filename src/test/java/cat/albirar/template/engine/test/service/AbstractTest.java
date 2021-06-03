@@ -28,6 +28,9 @@ import cat.albirar.template.engine.models.TemplateDefinitionBean;
  */
 public abstract class AbstractTest {
 
+    /** The _thymeleaf_ template language identifier */
+    private static final String TL_THYMELEAF = "thymeleaf";
+    
     protected static final String SIMPLE_HTML_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/simpleTemplate.html";
     protected static final String SIMPLE_TXT_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/simpleTemplate.txt";
     protected static final String SIMPLE_TEST_H1 = "Text";
@@ -59,37 +62,44 @@ public abstract class AbstractTest {
             .name("Test1")
             .contentType(EContentType.HTML)
             .template(SIMPLE_HTML_TEMPLATE_TEST)
+            .templateEngineLanguage(TL_THYMELEAF)
             .build()
             ;
     
     protected static final TemplateDefinitionBean varHtmlTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test 2")
             .contentType(EContentType.HTML)
-            .template(VARS_HTML_TEMPLATE_TEST).build()
+            .template(VARS_HTML_TEMPLATE_TEST)
+            .templateEngineLanguage(TL_THYMELEAF)
+            .build()
             ;
     
     protected static final TemplateDefinitionBean varMsgHtmlTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test 2")
             .contentType(EContentType.HTML)
             .template(VARS_HTML_MSG_TEMPLATE_TEST)
+            .templateEngineLanguage(TL_THYMELEAF)
             .build()
             ;
     
     protected static final TemplateDefinitionBean simpleTxtTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test1")
             .template(SIMPLE_TXT_TEMPLATE_TEST)
+            .templateEngineLanguage(TL_THYMELEAF)
             .build()
             ;
     
     protected static final TemplateDefinitionBean varTxtTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test 2")
             .template(VARS_TXT_TEMPLATE_TEST)
+            .templateEngineLanguage(TL_THYMELEAF)
             .build()
             ;
 
     protected static final TemplateDefinitionBean varMsgTxtTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test 2")
             .template(VARS_TXT_MSG_TEMPLATE_TEST)
+            .templateEngineLanguage(TL_THYMELEAF)
             .build()
             ;
 }

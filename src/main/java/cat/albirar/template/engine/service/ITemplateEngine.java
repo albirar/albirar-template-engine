@@ -18,12 +18,7 @@
  */
 package cat.albirar.template.engine.service;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 import org.springframework.validation.annotation.Validated;
-
-import cat.albirar.template.engine.models.TemplateInstanceBean;
 
 /**
  * The template engine contract.
@@ -31,11 +26,10 @@ import cat.albirar.template.engine.models.TemplateInstanceBean;
  * @since 1.0.0
  */
 @Validated
-public interface ITemplateEngine {
+public interface ITemplateEngine extends IEngineRender {
     /**
-     * Render the indicated {@code template} without variables to generate output.
-     * @param template The template definition
-     * @return The resulting template rendered
+     * Return the template language identifier for this template engine, like _thymeleaf_, _velocity_, etc.
+     * @return The type identifier
      */
-    public String renderTemplate(@NotNull @Valid TemplateInstanceBean template);
+    public String getTemplateLanguage();
 }

@@ -62,6 +62,7 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
     @Setter(onParam_ = { @NotNull })
     @NotNull
     private Locale locale;
+    
     /**
      * Build an instance with {@link Locale#getDefault()} and without {@link TemplateInstanceBean#getMessages()} and an empty {@link TemplateInstanceBean#getVariables()}. 
      * @param definition The template definition
@@ -80,6 +81,7 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
                 .charSet(definition.getCharSet())
                 .contentType(definition.getContentType())
                 .template(definition.getTemplate())
+                .templateEngineLanguage(definition.getTemplateEngineLanguage())
                 .locale(new Locale(""))
                 .messages(new ResourceBundleMessageSource())
                 ;

@@ -42,6 +42,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.StringUtils;
 
+import cat.albirar.template.engine.ITemplateEngineFactory;
 import cat.albirar.template.engine.models.TemplateInstanceBean;
 import cat.albirar.template.engine.service.ITemplateEngine;
 import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
@@ -82,15 +83,15 @@ public class TemplateEngineTest extends AbstractTest {
                 .build()
     };
     @Autowired
-    private ITemplateEngine templateEngine;
+    private ITemplateEngineFactory templateEnginefactory;
     
     /**
      * Test for validation on engine.
      */
     @Test
     public void testNullsInvalids() {
-        assertThrows(ValidationException.class, () -> templateEngine.renderTemplate(null));
-        assertThrows(ValidationException.class, () -> templateEngine.renderTemplate(TemplateInstanceBean.builder().build()));
+        assertThrows(ValidationException.class, () -> templateEnginefactory.renderTemplate(null));
+        assertThrows(ValidationException.class, () -> templateEnginefactory.renderTemplate(TemplateInstanceBean.builder().build()));
     }
     /**
      * Test create html without messages nor variables.
@@ -100,7 +101,7 @@ public class TemplateEngineTest extends AbstractTest {
         String tx;
         Document parsed;
         
-        tx = templateEngine.renderTemplate(TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().build()).build());
+        tx = templateEnginefactory.renderTemplate(TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().build()).build());
         assertNotNull(tx);
         assertTrue(StringUtils.hasText(tx));
         
@@ -130,7 +131,7 @@ public class TemplateEngineTest extends AbstractTest {
                 .variables(vars)
                 .build()
                 ;
-        r = templateEngine.renderTemplate(tinst);
+        r = templateEnginefactory.renderTemplate(tinst);
         assertNotNull(r);
         assertTrue(StringUtils.hasText(r));
 
@@ -170,7 +171,7 @@ public class TemplateEngineTest extends AbstractTest {
                 .build()
                 ;
         
-        r = templateEngine.renderTemplate(tinst);
+        r = templateEnginefactory.renderTemplate(tinst);
         assertNotNull(r);
         assertTrue(StringUtils.hasText(r));
 
@@ -192,7 +193,7 @@ public class TemplateEngineTest extends AbstractTest {
         
         
         // TEST CA
-        r = templateEngine.renderTemplate(tinst.toBuilder().locale(new Locale("ca")).build());
+        r = templateEnginefactory.renderTemplate(tinst.toBuilder().locale(new Locale("ca")).build());
         assertNotNull(r);
         assertTrue(StringUtils.hasText(r));
 
@@ -213,7 +214,7 @@ public class TemplateEngineTest extends AbstractTest {
         }
         
         // TEST FR
-        r = templateEngine.renderTemplate(tinst.toBuilder().locale(new Locale("fr")).build());
+        r = templateEnginefactory.renderTemplate(tinst.toBuilder().locale(new Locale("fr")).build());
         assertNotNull(r);
         assertTrue(StringUtils.hasText(r));
 
@@ -240,7 +241,7 @@ public class TemplateEngineTest extends AbstractTest {
     public void testTxtRenderWithoutMessagesNorVariables() {
         String tx;
         
-        tx = templateEngine.renderTemplate(TemplateInstanceBean.buildInstance(simpleTxtTemplateDefinition.toBuilder().build()).build());
+        tx = templateEnginefactory.renderTemplate(TemplateInstanceBean.buildInstance(simpleTxtTemplateDefinition.toBuilder().build()).build());
         assertNotNull(tx);
         assertTrue(StringUtils.hasText(tx));
         assertEquals(SIMPLE_TXT_TEMPLATE_TEST_RESULT, tx);
@@ -263,7 +264,7 @@ public class TemplateEngineTest extends AbstractTest {
                 .variables(vars)
                 .build()
                 ;
-        r = templateEngine.renderTemplate(tinst);
+        r = templateEnginefactory.renderTemplate(tinst);
         assertNotNull(r);
         assertTrue(StringUtils.hasText(r));
         // Prepare expected...
@@ -304,7 +305,7 @@ public class TemplateEngineTest extends AbstractTest {
                 .build()
                 ;
         
-        r = templateEngine.renderTemplate(tinst);
+        r = templateEnginefactory.renderTemplate(tinst);
         assertNotNull(r);
         assertTrue(StringUtils.hasText(r));
         
@@ -329,7 +330,7 @@ public class TemplateEngineTest extends AbstractTest {
         assertEquals(stb.toString(), r);
         
         // TEST CA
-        r = templateEngine.renderTemplate(tinst.toBuilder().locale(new Locale("ca")).build());
+        r = templateEnginefactory.renderTemplate(tinst.toBuilder().locale(new Locale("ca")).build());
         assertNotNull(r);
         assertTrue(StringUtils.hasText(r));
 
@@ -354,7 +355,7 @@ public class TemplateEngineTest extends AbstractTest {
         assertEquals(stb.toString(), r);
         
         // TEST FR
-        r = templateEngine.renderTemplate(tinst.toBuilder().locale(new Locale("fr")).build());
+        r = templateEnginefactory.renderTemplate(tinst.toBuilder().locale(new Locale("fr")).build());
         assertNotNull(r);
         assertTrue(StringUtils.hasText(r));
 

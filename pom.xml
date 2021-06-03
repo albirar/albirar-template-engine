@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>cat.albirar</groupId>
 		<artifactId>albirar-root-dependencies</artifactId>
-		<version>2.1.0</version>
+		<version>2.2.0-SNAPSHOT</version>
 	</parent>
 	<groupId>cat.albirar.lib</groupId>
 	<artifactId>albirar-template-engine</artifactId>

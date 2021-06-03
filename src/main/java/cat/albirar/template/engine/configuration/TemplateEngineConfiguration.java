@@ -28,18 +28,18 @@ import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
+import cat.albirar.template.engine.registry.TemplateEngineRegistryDefaultImpl;
 import cat.albirar.template.engine.service.ITemplateEngine;
 import cat.albirar.template.engine.service.impl.TemplateEngineImpl;
 
 /**
  * The configuration for template engine.
- * The 
  * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
  * @since 1.0.0
  */
 @Configuration
 @AutoConfigureOrder(Integer.MAX_VALUE)
-@ComponentScan(basePackageClasses = {ITemplateEngine.class, TemplateEngineImpl.class})
+@ComponentScan(basePackageClasses = {ITemplateEngine.class, TemplateEngineImpl.class, TemplateEngineRegistryDefaultImpl.class})
 public class TemplateEngineConfiguration {
     /**
      * The {@link SpringTemplateEngine} to use on rendering.
