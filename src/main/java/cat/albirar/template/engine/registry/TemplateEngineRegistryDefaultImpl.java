@@ -81,7 +81,7 @@ public class TemplateEngineRegistryDefaultImpl implements ITemplateEngineRegistr
         if(te.isPresent()) {
             return te.get().renderTemplate(template);
         }
-        // If no template engine was found, return the template without any transformation
-        return template.getTemplate();
+        // If no template engine was found, a exception should to be thrown
+        throw new IllegalStateException("No engine was registerd for the template language '".concat(template.getTemplateEngineLanguage()).concat("'"));
     }
 }

@@ -34,6 +34,7 @@ public interface IEngineRender {
      * Render the indicated {@code template} without variables to generate output.
      * @param template The template definition
      * @return The resulting template rendered
+     * @throws IllegalStateException If the indicated {@code template} language is unknown (not registered engine is available for this template language)
      */
     public String renderTemplate(@NotNull @Valid TemplateInstanceBean template);
 }

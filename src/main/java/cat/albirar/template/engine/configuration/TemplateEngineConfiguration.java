@@ -30,7 +30,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
 import cat.albirar.template.engine.registry.TemplateEngineRegistryDefaultImpl;
 import cat.albirar.template.engine.service.ITemplateEngine;
-import cat.albirar.template.engine.service.impl.TemplateEngineImpl;
+import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl;
 
 /**
  * The configuration for template engine.
@@ -39,7 +39,7 @@ import cat.albirar.template.engine.service.impl.TemplateEngineImpl;
  */
 @Configuration
 @AutoConfigureOrder(Integer.MAX_VALUE)
-@ComponentScan(basePackageClasses = {ITemplateEngine.class, TemplateEngineImpl.class, TemplateEngineRegistryDefaultImpl.class})
+@ComponentScan(basePackageClasses = {ITemplateEngine.class, ThymeleafSpringTemplateEngineImpl.class, TemplateEngineRegistryDefaultImpl.class})
 public class TemplateEngineConfiguration {
     /**
      * The {@link SpringTemplateEngine} to use on rendering.

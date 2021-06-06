@@ -40,10 +40,13 @@ import cat.albirar.template.engine.service.ITemplateEngineRegistry;
  * @since 1.0.0
  */
 @Component
-public class TemplateEngineImpl implements ITemplateEngine, InitializingBean {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TemplateEngineImpl.class);
+public class ThymeleafSpringTemplateEngineImpl implements ITemplateEngine, InitializingBean {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ThymeleafSpringTemplateEngineImpl.class);
     
-    private static final String TEMPLATE_LANGUAGE = "thymeleaf";
+    /**
+     * The template language identifier for this engine.
+     */
+    public static final String TEMPLATE_LANGUAGE = "thymeleaf-spring";
     
     @Autowired
     private SpringResourceTemplateResolver templateResolver;

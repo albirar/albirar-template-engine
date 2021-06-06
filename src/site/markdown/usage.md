@@ -26,38 +26,40 @@ public class DemoApplication {
 
 If not, you can import the configuration class `cat.albirar.template.engine.configuration.TemplateEngineConfiguration`.
 
-### Engine
+### Engines
 
-The templates are files that should to be placed in the classpath, as a resource.
+Since version `3.0.0`, library is capable of render templates written in different template languages, as Thymeleaf, Velocity, freeMarker, Mustache, StringTemplate, etc
 
-The template engine is a Spring Bean dependency, resolved through autowired annotation:
+For more information see [Engines](engines.html).
+
+Users of library only need to resolve the unique engine factory and use them transparently. The factory apply the correct template engine depending on template language of template definition.
+
+Create a dependency of template factory and resolve them through a autowired annotation:
 
 ```java
 // ...
 
 @Autowired
-private ITemplateEngine templateEngine;
+private ITemplateEngineFactory templateEnginefactory;
 
 // ...
 
 ```
 
-By default, a template engine implementation is provided. This engine works with [Thymeleaf language with Spring Beans extension](https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html).
-
-Remember to use the interface, so concrete implementations can be selected through configuration.
-
-
 ### Template definition
 
-A template definition is a general applicable template that should to be *instantiated* in order to use them.
+Templates are files that should to be placed in the classpath, as a resource.
 
-A `cat.albirar.template.engine.models.TemplateDefinitionBean` describe the invariable template aspects, like name, template resource classpath, content type and charset:
+A template definition is a general applicable template model that should to be *instantiated* in order to use them.
+
+A `cat.albirar.template.engine.models.TemplateDefinitionBean` describe the invariable template aspects, like name, template language, template resource classpath, content type and charset:
 
 ```java
 TemplateDefinitionBean tDefinition;
 
 tDefinition = TemplateDefinitionBean.builder()
                .name("Template1")
+               .templateLanguage("velocity")
                .contentType(EContentType.HTML)
                .template("classpath:/cat/albirar/template/engine/templates/simpleTemplate.html")
                .build()
@@ -80,6 +82,7 @@ vars.put("users", Arrays.asList(VARS_USERS));
 messages = new ResourceBundleMessageSource();
 messages.addBasenames("cat/albirar/template/engine/messages/template1");
 
+// Create the instance from definition
 tInstance = TemplateInstanceBean.buildInstance(tDefinition)
                  .locale(new Locale("ca"))
                  .variables(vars)
@@ -89,11 +92,14 @@ tInstance = TemplateInstanceBean.buildInstance(tDefinition)
 ```
 ### Template rendering
 
-With the template instance, you can do the rendering:
+With the template instance, you can do the rendering simply by calling factory:
 
 ```java
 String rendered;
 
-rendered = templateEngine.renderTemplate(tInstance);
+rendered = templateFactory.renderTemplate(tInstance);
 
 ```
+
+The factory lookup the applicable template engine based on template language indicated in `TemplateDefinitionBean`
+
