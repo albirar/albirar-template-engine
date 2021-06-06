@@ -32,6 +32,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import cat.albirar.template.engine.models.TemplateInstanceBean;
 import cat.albirar.template.engine.service.ITemplateEngine;
 import cat.albirar.template.engine.service.ITemplateEngineRegistry;
+import cat.albirar.template.engine.service.TemplateEngineContext;
 
 /**
  * The default {@link ITemplateEngine} implementation backed with {@link SpringTemplateEngine}, that supports <a href="https://www.thymeleaf.org/">thymeleaf</a> 

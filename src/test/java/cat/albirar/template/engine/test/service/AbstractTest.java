@@ -56,6 +56,8 @@ public abstract class AbstractTest {
     protected static final String VARS_MSG_TEST_TXT_LBL_CA = "Nom d'usuari: ";
     protected static final String VARS_MSG_TEST_TXT_LBL_FR = "Nom d'utilisateur: ";
     
+    protected static final String [] REGISTERED_TEMPLATES = { ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE };
+    
     protected static final TemplateDefinitionBean simpleHtmlTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test1")
             .contentType(EContentType.HTML)

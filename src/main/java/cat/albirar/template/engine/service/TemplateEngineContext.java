@@ -16,7 +16,7 @@
  *
  * Copyright (C) 2020 Octavi Fornés
  */
-package cat.albirar.template.engine.service.impl;
+package cat.albirar.template.engine.service;
 
 import java.util.Locale;
 import java.util.Set;
