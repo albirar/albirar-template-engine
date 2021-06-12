@@ -26,31 +26,11 @@ public class DemoApplication {
 
 If not, you can import the configuration class `cat.albirar.template.engine.configuration.TemplateEngineConfiguration`.
 
-### Engines
-
-Since version `3.0.0`, library is capable of render templates written in different template languages, as Thymeleaf, Velocity, freeMarker, Mustache, StringTemplate, etc
-
-For more information see [Engines](engines.html).
-
-Users of library only need to resolve the unique engine factory and use them transparently. The factory apply the correct template engine depending on template language of template definition.
-
-Create a dependency of template factory and resolve them through a autowired annotation:
-
-```java
-// ...
-
-@Autowired
-private ITemplateEngineFactory templateEnginefactory;
-
-// ...
-
-```
-
 ### Template definition
 
 Templates are files that should to be placed in the classpath, as a resource.
 
-A template definition is a general applicable template model that should to be *instantiated* in order to use them.
+A **template definition** is a general applicable template model that should to be *instantiated* in order to use them.
 
 A `cat.albirar.template.engine.models.TemplateDefinitionBean` describe the invariable template aspects, like name, template language, template resource classpath, content type and charset:
 
@@ -101,5 +81,48 @@ rendered = templateFactory.renderTemplate(tInstance);
 
 ```
 
-The factory lookup the applicable template engine based on template language indicated in `TemplateDefinitionBean`
+The factory lookup the applicable template engine based on template language indicated in `TemplateDefinitionBean`.
+
+### Engines
+
+Since version `3.0.0`, library is capable of render templates written in different *template languages*, as [Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html), [Velocity](https://velocity.apache.org/engine), [FreeMarker](https://freemarker.apache.org/), [Mustache](https://github.com/spullara/mustache.java), [StringTemplate](https://www.stringtemplate.org/), etc
+
+For more information see [Engines](engines.html).
+
+Each template definition should to inform the property `templateLanguage`, used to resolve the template engine for rendering.
+
+The rendering is made with a unique singleton template engine factory.
+
+Create a dependency of template factory and resolve them through an autowired annotation:
+
+```java
+// ...
+
+@Autowired
+private ITemplateEngineFactory templateEnginefactory;
+
+// ...
+
+```
+
+The call the method `renderTemplate` with the template instance and use the return value as the render result.
+
+```java
+// ...
+String r;
+try {
+    r = templateEngineFactory.renderTemplate(tInstance);    
+} catch (IllegalStateException e) {
+    LOGGER.error(String.format("No template engine was found for %s", tInstance.getTemplateLanguage()), e);
+}
+// ...
+```
+
+
+
+Internally, the factory gets the value of property `templateLanguage` at template instance and search for a template engine suitable for this language.
+
+If a template engine was found, the factory delegates the rendering to the template engine and return the result of rendering.
+
+If no template engine was found, a `IllegalStateException` is thrown.
 
