@@ -1,5 +1,6 @@
 cat.albirar.template.engine
 cat.albirar.template.engine.configuration
 cat.albirar.template.engine.models
+cat.albirar.template.engine.registry
 cat.albirar.template.engine.service
 cat.albirar.template.engine.service.impl

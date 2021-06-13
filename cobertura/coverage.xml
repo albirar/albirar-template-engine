@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="1.0" branch-rate="1.0" lines-covered="39" lines-valid="39" branches-covered="10" branches-valid="10" complexity="1.9090909090909092" version="2.1.1" timestamp="1613484268931">
+<coverage line-rate="1.0" branch-rate="1.0" lines-covered="42" lines-valid="42" branches-covered="10" branches-valid="10" complexity="1.7692307692307692" version="2.1.1" timestamp="1623546847723">
 	<sources>
 		<source>/home/octavi/Dropbox/feina/projectes/fam/albirar-template-engine/src/main/java</source>
 		<source>--source</source>
@@ -124,9 +124,9 @@
 				</class>
 			</classes>
 		</package>
-		<package name="cat.albirar.template.engine.service.impl" line-rate="1.0" branch-rate="1.0" complexity="1.8571428571428572">
+		<package name="cat.albirar.template.engine.service" line-rate="1.0" branch-rate="1.0" complexity="2.0">
 			<classes>
-				<class name="cat.albirar.template.engine.service.impl.TemplateEngineContext" filename="cat/albirar/template/engine/service/impl/TemplateEngineContext.java" line-rate="1.0" branch-rate="1.0" complexity="2.0">
+				<class name="cat.albirar.template.engine.service.TemplateEngineContext" filename="cat/albirar/template/engine/service/TemplateEngineContext.java" line-rate="1.0" branch-rate="1.0" complexity="2.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcat/albirar/template/engine/models/TemplateInstanceBean;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
@@ -208,40 +208,58 @@
 						<line number="90" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="cat.albirar.template.engine.service.impl.TemplateEngineImpl" filename="cat/albirar/template/engine/service/impl/TemplateEngineImpl.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+			</classes>
+		</package>
+		<package name="cat.albirar.template.engine.service.impl" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+			<classes>
+				<class name="cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl" filename="cat/albirar/template/engine/service/impl/ThymeleafSpringTemplateEngineImpl.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="42" hits="4" branch="false"/>
+								<line number="45" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="41" hits="4" branch="false"/>
+								<line number="44" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="afterPropertiesSet" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="63" hits="4" branch="false"/>
+								<line number="64" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="getTemplateLanguage" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="71" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="renderTemplate" signature="(Lcat/albirar/template/engine/models/TemplateInstanceBean;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="55" hits="10" branch="false"/>
-								<line number="56" hits="10" branch="false"/>
-								<line number="57" hits="10" branch="false"/>
-								<line number="58" hits="10" branch="false"/>
-								<line number="59" hits="10" branch="false"/>
-								<line number="60" hits="10" branch="false"/>
-								<line number="61" hits="10" branch="false"/>
+								<line number="82" hits="10" branch="false"/>
+								<line number="83" hits="10" branch="false"/>
+								<line number="84" hits="10" branch="false"/>
+								<line number="85" hits="10" branch="false"/>
+								<line number="86" hits="10" branch="false"/>
+								<line number="87" hits="10" branch="false"/>
+								<line number="88" hits="10" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="41" hits="4" branch="false"/>
-						<line number="42" hits="4" branch="false"/>
-						<line number="55" hits="10" branch="false"/>
-						<line number="56" hits="10" branch="false"/>
-						<line number="57" hits="10" branch="false"/>
-						<line number="58" hits="10" branch="false"/>
-						<line number="59" hits="10" branch="false"/>
-						<line number="60" hits="10" branch="false"/>
-						<line number="61" hits="10" branch="false"/>
+						<line number="44" hits="4" branch="false"/>
+						<line number="45" hits="4" branch="false"/>
+						<line number="63" hits="4" branch="false"/>
+						<line number="64" hits="4" branch="false"/>
+						<line number="71" hits="4" branch="false"/>
+						<line number="82" hits="10" branch="false"/>
+						<line number="83" hits="10" branch="false"/>
+						<line number="84" hits="10" branch="false"/>
+						<line number="85" hits="10" branch="false"/>
+						<line number="86" hits="10" branch="false"/>
+						<line number="87" hits="10" branch="false"/>
+						<line number="88" hits="10" branch="false"/>
 					</lines>
 				</class>
 			</classes>
