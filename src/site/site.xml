@@ -34,7 +34,7 @@
 			<![CDATA[<link rel="icon" type="image/png" href="images/logo-albirar-icon.png"></link>]]>
 		</head>
 		<menu name="Documentation" title="Documentation">
-			<item name="Add to your project" href="dependency.html" />
+			<item name="Add to your project" href="dependency-info.html" />
 			<item name="Usage" href="usage.html" />
 			<item name="Engines" href="engines.html" />
 			<item name="Github" href="scm.html"  />
