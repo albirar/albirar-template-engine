@@ -20,6 +20,7 @@ package cat.albirar.template.engine.test.service;
 
 import cat.albirar.template.engine.EContentType;
 import cat.albirar.template.engine.models.TemplateDefinitionBean;
+import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl;
 
 /**
  * Abstract class with some common methods and properties.
@@ -55,41 +56,50 @@ public abstract class AbstractTest {
     protected static final String VARS_MSG_TEST_TXT_LBL_CA = "Nom d'usuari: ";
     protected static final String VARS_MSG_TEST_TXT_LBL_FR = "Nom d'utilisateur: ";
     
+    protected static final String [] REGISTERED_TEMPLATES = { ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE };
+    
     protected static final TemplateDefinitionBean simpleHtmlTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test1")
             .contentType(EContentType.HTML)
             .template(SIMPLE_HTML_TEMPLATE_TEST)
+            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
             .build()
             ;
     
     protected static final TemplateDefinitionBean varHtmlTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test 2")
             .contentType(EContentType.HTML)
-            .template(VARS_HTML_TEMPLATE_TEST).build()
+            .template(VARS_HTML_TEMPLATE_TEST)
+            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
+            .build()
             ;
     
     protected static final TemplateDefinitionBean varMsgHtmlTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test 2")
             .contentType(EContentType.HTML)
             .template(VARS_HTML_MSG_TEMPLATE_TEST)
+            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
             .build()
             ;
     
     protected static final TemplateDefinitionBean simpleTxtTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test1")
             .template(SIMPLE_TXT_TEMPLATE_TEST)
+            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
             .build()
             ;
     
     protected static final TemplateDefinitionBean varTxtTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test 2")
             .template(VARS_TXT_TEMPLATE_TEST)
+            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
             .build()
             ;
 
     protected static final TemplateDefinitionBean varMsgTxtTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test 2")
             .template(VARS_TXT_MSG_TEMPLATE_TEST)
+            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
             .build()
             ;
 }

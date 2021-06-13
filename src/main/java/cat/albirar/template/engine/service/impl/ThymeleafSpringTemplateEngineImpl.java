@@ -22,14 +22,17 @@ import java.util.Collections;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateSpec;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
 import cat.albirar.template.engine.models.TemplateInstanceBean;
 import cat.albirar.template.engine.service.ITemplateEngine;
+import cat.albirar.template.engine.service.ITemplateEngineRegistry;
+import cat.albirar.template.engine.service.TemplateEngineContext;
 
 /**
  * The default {@link ITemplateEngine} implementation backed with {@link SpringTemplateEngine}, that supports <a href="https://www.thymeleaf.org/">thymeleaf</a> 
@@ -37,12 +40,36 @@ import cat.albirar.template.engine.service.ITemplateEngine;
  * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
  * @since 1.0.0
  */
-@Service
-public class TemplateEngineImpl implements ITemplateEngine {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TemplateEngineImpl.class);
+@Component
+public class ThymeleafSpringTemplateEngineImpl implements ITemplateEngine, InitializingBean {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ThymeleafSpringTemplateEngineImpl.class);
+    
+    /**
+     * The template language identifier for this engine.
+     */
+    public static final String TEMPLATE_LANGUAGE = "thymeleaf-spring";
     
     @Autowired
     private SpringResourceTemplateResolver templateResolver;
+    
+    @Autowired 
+    private ITemplateEngineRegistry registry;
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        registry.register(this);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getTemplateLanguage() {
+        return TEMPLATE_LANGUAGE;
+    }
     
     /**
      * {@inheritDoc}

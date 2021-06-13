@@ -33,7 +33,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import cat.albirar.template.engine.models.TemplateInstanceBean;
-import cat.albirar.template.engine.service.impl.TemplateEngineContext;
+import cat.albirar.template.engine.service.TemplateEngineContext;
 import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
 
 /**

@@ -1,0 +1,86 @@
+= Engines
+
+Octavi Fornés <ofornes@albirar.cat>
+
+:doctype: article
+:encoding: utf-8
+:lang: en
+
+== Definition
+
+A template engine is a class capable of render a specific template language resource, with the properties and message resources provided to the template instance.
+
+Is an implementation class of the link:apidocs/cat/albirar/template/engine/service/ITemplateEngine.html[`cat.albirar.template.engine.service.ITemplateEngine`] interface.
+
+Since version `3.0.0`, a factory is used to render templates. This factory is responsible of find and delegate the render call to a registered template engine.
+
+Library ships with a link:https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html[Thymeleaf Spring Dialect] template engine that is auto-registered.
+
+You can add more template engines by adding the corresponding jar to the classpath and configure and register them.
+
+== Add a new template engine to your project
+
+In your project, among other libraries, you should to add a dependency to the template engine jar that you want to use.
+
+In your configuration, you should to add the template engine class on the class collection to _scan_ by Spring.
+
+The template engine class should to register itself on factory.
+
+That's all! You can use templates in the language that the selected template engines can manage.
+
+== Develop a new template engine
+
+=== Dependencies
+
+Among the other dependencies you need, the `albirar-template-engine` jar dependency should to be added to your project (see link:dependency-info.html[dependency info])
+
+=== Implementation
+
+Create a class that implement the link:apidocs/cat/albirar/template/engine/service/ITemplateEngine.html[`cat.albirar.template.engine.service.ITemplateEngine`]. Implement the methods as needed.
+
+[IMPORTANT]
+====
+Your class should to be associated with a specific template language. An identifier is required to do so.
+A curated selection of identifier string should to be made. In case of `Thymeleaf` with `Spring dialect`, the identifier is `thymeleaf-spring` and is defined as a constant at class link:apidocs/cat/albirar/template/engine/service/impl/ThymeleafSpringTemplateEngineImpl.html[`cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl`].
+====
+
+Is a good practice to expose publicly the string constant with the defined identifier. So, users of your template engine can reference directly this identifier.
+
+=== Registration
+
+To register a template engine, should to call the `register` method on link:apidocs/cat/albirar/template/engine/service/ITemplateEngineRegistry.html[`cat.albirar.template.engine.service.ITemplateEngineRegistry`] registry object:
+
+[source, java]
+----
+    // ...
+    @Autowired 
+    private ITemplateEngineRegistry registry;
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        registry.register(this);
+    }
+    // ...
+----
+
+[TIP]
+====
+It's recommended that the class itself do the registration automatically, on construction time, to avoid the need of registration by users.
+====
+
+In the above example, the template engine class implement the life-cycle interface `org.springframework.beans.factory.InitializingBean` in order to register itself as a new template engine.
+
+=== Configuration
+
+If your template engine needs any kind of configuration, you should to create a `Configuration` class, eligible to import by configuration classes of users.
+
+[WARNING]
+====
+Although you can register your template with the configuration class, it's not recommended so in future versions of `albirar-template-engine`, the registration can be made in a different moment of configuration.
+
+It's better that template engine class do a self-registration on initializing bean.
+====
+

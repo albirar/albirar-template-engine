@@ -37,7 +37,7 @@ import lombok.experimental.SuperBuilder;
 /**
  * The template definition bean.
  * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
- * @since 1.0.0
+ * @since 1.0.0, 2.2.0
  */
 @SuperBuilder(toBuilder = true)
 @Data
@@ -51,7 +51,7 @@ public class TemplateDefinitionBean implements Serializable {
     
 
     /**
-     * A simbolic name for this template.
+     * A symbolic name for this template.
      */
     @Setter(onParam_ = { @NotBlank })
     @NotBlank
@@ -66,6 +66,15 @@ public class TemplateDefinitionBean implements Serializable {
     @Setter(onParam_ = { @NotBlank })
     @NotBlank
     private String template;
+    
+    /**
+     * The template engine language.
+     * Identify the engine capable of transform the given template
+     * 
+     */
+    @Setter(onParam_ = { @NotBlank})
+    @NotBlank
+    private String templateEngineLanguage;
     
     /**
      * The resulting content type of this template.

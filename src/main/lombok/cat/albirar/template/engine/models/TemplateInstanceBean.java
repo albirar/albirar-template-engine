@@ -50,18 +50,33 @@ import lombok.experimental.SuperBuilder;
 public class TemplateInstanceBean extends TemplateDefinitionBean {
     private static final long serialVersionUID = -5629519913709919500L;
 
+    /**
+     * Messages to use in i18n.
+     * @param messages The message source to use
+     * @return The message source to use
+     */
     @Setter(onParam_ = { @NotNull })
     @NotNull
     private MessageSource messages;
-    
+    /**
+     * A map with key-values to apply on rendering.
+     * @param variables The map with values to use
+     * @return The map with values to use
+     */
     @Default
     @Setter(onParam_ = { @NotNull })
     @NotNull
     private Map<String, Object> variables = new TreeMap<>();
     
+    /**
+     * The locale to use in i18n.
+     * @param locale The locale to use
+     * @return The locale to use
+     */
     @Setter(onParam_ = { @NotNull })
     @NotNull
     private Locale locale;
+    
     /**
      * Build an instance with {@link Locale#getDefault()} and without {@link TemplateInstanceBean#getMessages()} and an empty {@link TemplateInstanceBean#getVariables()}. 
      * @param definition The template definition
@@ -80,6 +95,7 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
                 .charSet(definition.getCharSet())
                 .contentType(definition.getContentType())
                 .template(definition.getTemplate())
+                .templateEngineLanguage(definition.getTemplateEngineLanguage())
                 .locale(new Locale(""))
                 .messages(new ResourceBundleMessageSource())
                 ;

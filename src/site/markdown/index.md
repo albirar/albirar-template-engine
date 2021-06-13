@@ -15,7 +15,7 @@ Can be used with [SpringFramework](https://spring.io/projects/spring-framework "
 
 ### Add to your project
 
-See [Add to your project](dependency.html "Add to your project")
+See [Add to your project](dependency-info.html "Add to your project")
 
 ### Usage
 

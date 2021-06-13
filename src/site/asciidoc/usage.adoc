@@ -1,0 +1,150 @@
+= Usage
+
+Octavi Fornés <ofornes@albirar.cat>
+
+:doctype: article
+:encoding: utf-8
+:lang: en
+
+Once link:dependency.html[dependencies has been set], usage is easy.
+
+== Configuration
+
+First of all, should to configure. This library is auto-configurable with the spring boot annotation https://docs.spring.io/spring-boot/docs/{spring-boot-version}/api/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html[@EnableAutoConfiguration]:
+
+[source, java]
+----
+@SpringBootApplication
+@EnableAutoConfiguration
+public class DemoApplication {
+    // ...
+----
+
+
+Also you can use the annotation link:apidocs/cat/albirar/template/engine/configuration/AutoconfigureTemplateEngine.html[@AutoconfigureTemplateEngine]:
+
+
+[source, java]
+----
+@SpringBootApplication
+@AutoconfigureTemplateEngine
+public class DemoApplication {
+    // ...
+----
+
+
+If not, you can import the configuration class link:apidocs/cat/albirar/template/engine/configuration/TemplateEngineConfiguration.html[`cat.albirar.template.engine.configuration.TemplateEngineConfiguration`].
+
+== Template definition
+
+[NOTE]
+====
+Templates are files that should to be placed in the classpath, as a resource.
+====
+
+A *template definition* is a general applicable template model that should to be *instantiated* in order to use them.
+
+A link:apidocs/cat/albirar/template/engine/models/TemplateDefinitionBean.html[`cat.albirar.template.engine.models.TemplateDefinitionBean`] describe the invariable template aspects, like name, template language, template resource classpath, content type and charset:
+
+[source, java]
+----
+TemplateDefinitionBean tDefinition;
+
+tDefinition = TemplateDefinitionBean.builder()
+    .name("Template1")
+    .templateLanguage("thymeleaf-spring")
+    .contentType(EContentType.HTML)
+    .template("classpath:/cat/albirar/template/engine/templates/simpleTemplate.html")
+    .build()
+    ;
+----
+
+== Template instantiation
+
+Once the definition is created, a link:apidocs/cat/albirar/template/engine/models/TemplateInstanceBean.html[`cat.albirar.template.engine.models.TemplateInstanceBean`] can be created from definition and set the specific aspects of each rendering, like variables and messages.
+
+
+[source, java]
+----
+TemplateInstanceBean tInstance;
+Map<String, Object> vars;
+ResourceBundleMessageSource messages;
+
+vars = new TreeMap<>();
+vars.put("title", "The first template title");
+vars.put("users", Arrays.asList(VARS_USERS));
+
+messages = new ResourceBundleMessageSource();
+messages.addBasenames("cat/albirar/template/engine/messages/template1");
+
+// Create the instance from definition
+tInstance = TemplateInstanceBean.buildInstance(tDefinition)
+    .locale(new Locale("ca"))
+    .variables(vars)
+    .messages(messages)
+    .build()
+    ;
+----
+
+== Template rendering
+
+With the template instance, you can do the rendering simply by calling factory:
+
+[source, java]
+----
+String rendered;
+
+rendered = templateFactory.renderTemplate(tInstance);
+
+----
+
+The factory lookup the applicable template engine based on template language indicated in `TemplateDefinitionBean`.
+
+== Engines
+
+Since version `3.0.0`, library is capable of render templates written in different *template languages*, as 
+
+* https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html[Thymeleaf]
+* https://velocity.apache.org/engine[Velocity], https://freemarker.apache.org/[FreeMarker]
+* https://github.com/spullara/mustache.java[Mustache]
+* https://www.stringtemplate.org/[StringTemplate], etc
+
+For more information see link:engines.html[Engines].
+
+Each template definition should to inform the property `templateLanguage`, used to resolve the template engine for rendering.
+
+The rendering is made with a unique singleton template engine factory.
+
+Create a dependency of template factory and resolve them through an autowired annotation:
+
+[source, java]
+----
+// ...
+
+@Autowired
+private ITemplateEngineFactory templateEnginefactory;
+
+// ...
+
+----
+
+Call method `renderTemplate` with the template instance and use the return value as the render result.
+
+[source, java]
+----
+// ...
+String r;
+try {
+    r = templateEngineFactory.renderTemplate(tInstance);    
+} catch (IllegalStateException e) {
+    LOGGER.error(String.format("No template engine was found for %s", tInstance.getTemplateLanguage()), e);
+}
+// ...
+----
+
+Internally, the factory gets the value of property `templateLanguage` at template instance and search for a template engine suitable for this language.
+
+If a template engine was found, the factory delegates the rendering to the template engine and return the result of rendering.
+
+If no template engine was found, a `IllegalStateException` is thrown.
+
