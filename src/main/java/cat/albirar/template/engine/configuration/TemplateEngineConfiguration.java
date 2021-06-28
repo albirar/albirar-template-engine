@@ -16,18 +16,21 @@
  */
 package cat.albirar.template.engine.configuration;
 
-import static cat.albirar.template.engine.configuration.PropertiesTemplate.CHARSET_VALUE;
+import static cat.albirar.template.engine.configuration.PropertiesTemplate.ROOT_TEMPLATE_PROPERTIES;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
+import cat.albirar.template.engine.models.ConfigurationPropertiesBean;
 import cat.albirar.template.engine.registry.TemplateEngineRegistryDefaultImpl;
 import cat.albirar.template.engine.service.ITemplateEngine;
 import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl;
@@ -39,6 +42,8 @@ import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImp
  */
 @Configuration
 @AutoConfigureOrder(Integer.MAX_VALUE)
+@EnableConfigurationProperties
+@PropertySource("classpath:/albirar-template-engine.yaml")
 @ComponentScan(basePackageClasses = {ITemplateEngine.class, ThymeleafSpringTemplateEngineImpl.class, TemplateEngineRegistryDefaultImpl.class})
 public class TemplateEngineConfiguration {
     /**
@@ -60,9 +65,17 @@ public class TemplateEngineConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean
-    public SpringResourceTemplateResolver thymeleafTemplateResolver(@Value(CHARSET_VALUE) String charset) {
+    public SpringResourceTemplateResolver thymeleafTemplateResolver(@Autowired ConfigurationPropertiesBean configurationProperties) {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setCharacterEncoding(charset);
+        templateResolver.setCharacterEncoding(configurationProperties.getCharset().name());
         return templateResolver;
     }
+    
+
+    @Bean
+    @ConfigurationProperties(prefix = ROOT_TEMPLATE_PROPERTIES)
+    public ConfigurationPropertiesBean configurationPropertiesBean() {
+        return ConfigurationPropertiesBean.builder().build();
+    }
+    
 }

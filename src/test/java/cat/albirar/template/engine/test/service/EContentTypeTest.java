@@ -18,7 +18,8 @@
  */
 package cat.albirar.template.engine.test.service;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -37,19 +38,19 @@ import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
 @ContextConfiguration(classes = DefaultTestConfiguration.class)
 public class EContentTypeTest {
     @Test
-    public void testMediaTypeHtml() {
+    public void when_mediaTypeIsHtml_then_PropertiesAreOk() {
         EContentType ct;
         
         ct = EContentType.HTML;
-        Assertions.assertEquals("text/html", ct.getMediaType());
-        Assertions.assertEquals(TemplateMode.HTML, ct.getTemplateMode());
+        assertEquals("text/html", ct.getMediaType());
+        assertEquals(TemplateMode.HTML, ct.getTemplateMode());
     }
     @Test
-    public void testMediaTypeText() {
+    public void when_mediaTypeIsText_then_PropertiesAreOk() {
         EContentType ct;
         
         ct = EContentType.TEXT_PLAIN;
-        Assertions.assertEquals("text/plain", ct.getMediaType());
-        Assertions.assertEquals(TemplateMode.TEXT, ct.getTemplateMode());
+        assertEquals("text/plain", ct.getMediaType());
+        assertEquals(TemplateMode.TEXT, ct.getTemplateMode());
     }
 }

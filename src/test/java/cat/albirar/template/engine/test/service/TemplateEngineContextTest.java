@@ -48,7 +48,7 @@ public class TemplateEngineContextTest extends AbstractTest {
      * Test the validation conditions to methods, like null, empty string, etc.
      */
     @Test
-    public void testValidations() {
+    public void when_argumentsToMethodsAreNotValids_then_ValidationExceptionIsThrown() {
         TemplateEngineContext tec;
         
         assertThrows(ValidationException.class, () -> new TemplateEngineContext(null));
@@ -68,7 +68,7 @@ public class TemplateEngineContextTest extends AbstractTest {
      * Test the methods that returns anything.
      */
     @Test
-    public void testGetters() {
+    public void when_valuesAreSetted_then_allGettersAreOk() {
         TemplateEngineContext tec;
         TemplateInstanceBean tib;
         

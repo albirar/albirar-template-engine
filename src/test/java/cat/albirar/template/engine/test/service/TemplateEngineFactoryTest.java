@@ -92,7 +92,7 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      * Test for validation on engine.
      */
     @Test
-    public void testNullsInvalids() {
+    public void when_argumentsToRenderAreNullOrInvalid_then_aValidationExceptionIsThrown() {
         assertThrows(ValidationException.class, () -> templateEnginefactory.renderTemplate(null));
         assertThrows(ValidationException.class, () -> templateEnginefactory.renderTemplate(TemplateInstanceBean.builder().build()));
     }
@@ -100,14 +100,14 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      * Test for unknown template language.
      */
     @Test
-    public void testUnknowLanguage() {
+    public void when_anUnknownTemplateLanguageInstanceIsRender_then_anIllegalStateExceptionIsThrown() {
         assertThrows(IllegalStateException.class, () -> templateEnginefactory.renderTemplate(TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().templateEngineLanguage("xxx").build()).build()));
     }
     /**
      * Test create html without messages nor variables.
      */
     @Test
-    public void testHtmlRenderWithoutMessagesNorVariables() {
+    public void when_anHtmlTemplateInstanceWithoutMessagesNorVariablesIsRender_then_aCorrectResultIsReturn() {
         String tx;
         Document parsed;
         
@@ -126,7 +126,7 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void testHtmlRenderWithVariablesNotMessages() {
+    public void when_anHtmlTemplateInstanceWithVariablesNotMessagesIsRender_then_aCorrectResultIsReturn() {
         TemplateInstanceBean tinst;
         Map<String, Object> vars;
         String r;
@@ -163,7 +163,7 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void testHtmlRenderWithVariablesAndMessages() {
+    public void when_anHtmlTemplateInstanceWithVariablesAndMessagesIsRender_then_aCorrectResultIsReturn() {
         TemplateInstanceBean tinst;
         Map<String, Object> vars;
         String r;
@@ -248,7 +248,7 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      * Test create text without messages nor variables.
      */
     @Test
-    public void testTxtRenderWithoutMessagesNorVariables() {
+    public void when_aTxtTemplateInstanceWithoutMessagesNorVariablesIsRender_then_aCorrectResultIsReturn() {
         String tx;
         
         tx = templateEnginefactory.renderTemplate(TemplateInstanceBean.buildInstance(simpleTxtTemplateDefinition.toBuilder().build()).build());
@@ -261,7 +261,7 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void testTxtRenderWithVariablesNotMessages() {
+    public void when_aTxtTemplateInstanceWithVariablesNotMessagesIsRender_then_aCorrectResultIsReturn() {
         TemplateInstanceBean tinst;
         Map<String, Object> vars;
         String r;
@@ -299,7 +299,7 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void testTxtRenderWithVariablesAndMessages() {
+    public void when_aTxtTemplateInstanceWithVariablesAndMessagesIsRender_then_aCorrectResultIsReturn() {
         TemplateInstanceBean tinst;
         Map<String, Object> vars;
         String r;
@@ -393,7 +393,7 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      * Test the {@link ITemplateEngineFactory#getRegisteredTemplateLanguages()} method.
      */
     @Test
-    public void testTemplateLanguageList() {
+    public void when_theTemplateLanguageListIsRequested_then_aNotEmptyListIsGetWithTheCorrectElements() {
         List<String> l1, lr;
         
         l1 = new ArrayList<String>();

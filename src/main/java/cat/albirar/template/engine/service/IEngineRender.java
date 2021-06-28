@@ -35,6 +35,8 @@ public interface IEngineRender {
      * @param template The template definition
      * @return The resulting template rendered
      * @throws IllegalStateException If the indicated {@code template} language is unknown (not registered engine is available for this template language)
+     * @throws TemplateNotAccessibleException If the indicated template is not accessible, ex: does'nt exists or is not a file or there are'nt authorization to read them
+     * @throws RenderingException The exception throw if there are problems in the rendering process, includes template language syntax error, variable is not of excepted type, etc
      */
     public String renderTemplate(@NotNull @Valid TemplateInstanceBean template);
 }

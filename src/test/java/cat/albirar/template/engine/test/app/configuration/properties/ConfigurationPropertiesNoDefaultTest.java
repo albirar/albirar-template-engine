@@ -16,11 +16,11 @@
  *
  * Copyright (C) 2021 Octavi Fornés
  */
-package cat.albirar.template.engine.test.app.configuration;
+package cat.albirar.template.engine.test.app.configuration.properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -30,39 +30,26 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
-import cat.albirar.template.engine.configuration.PropertiesTemplate;
 import cat.albirar.template.engine.models.ConfigurationPropertiesBean;
 
 /**
- * Test for application configuration.
+ * Test change defaults of properties.
  * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
- * @since 2.0.2
+ * @since 3.1.0
  */
-@SpringBootTest(args = "--debug")
-public class AutoConfigurationTest {
+@SpringBootTest(args = "--debug", properties = {"albirar.templates.charset=ISO-8859-1", "albirar.templates.directories=/temporal,/anotherDir"})
+public class ConfigurationPropertiesNoDefaultTest {
     @Autowired
-    SpringTemplateEngine templateEngine;
-    @Autowired
-    SpringResourceTemplateResolver templateResolver;
-    
-    @Autowired
-    ConfigurationPropertiesBean configurationPropertiesBean;
-
-    @Test
-    public void when_overridingConfigurationIsMade_then_AssertThatIsApplied() {
-        assertSame(templateEngine, AutoConfigurationTestConfiguration.templateEngine);
-        assertSame(templateResolver, AutoConfigurationTestConfiguration.templateResolver);
-    }
+    private ConfigurationPropertiesBean configurationPropertiesBean;
     
     @Test
-    public void when_configurationIsLoad_then_PropertiesAreDefault () {
+    public void when_overridingDefaultProperties_then_AllPropertiesAreOk() {
         List<Path> dirs;
         
-        assertEquals(PropertiesTemplate.DEFAULT_CHARSET, configurationPropertiesBean.getCharset());
-        dirs = Stream.of(PropertiesTemplate.DEFAULT_DIR_ARRAY).map(d -> Paths.get(d)).collect(Collectors.toList());
+        assertEquals(Charset.forName("ISO-8859-1"), configurationPropertiesBean.getCharset());
+        dirs = Stream.of("/temporal", "/anotherDir").map(d -> Paths.get(d)).collect(Collectors.toList());
         assertEquals(dirs, configurationPropertiesBean.getDirectories());
     }
+
 }
