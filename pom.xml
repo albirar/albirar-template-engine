@@ -132,20 +132,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<doclet>org.asciidoctor.Asciidoclet</doclet>
-					<docletArtifact>
-						<groupId>org.asciidoctor</groupId>
-						<artifactId>asciidoclet</artifactId>
-						<version>1.5.4</version>
-					</docletArtifact>
-					<additionalOptions>
-						--base-dir ${project.basedir}
-						--attribute "name=${project.name}"
-						--attribute "version=${project.version}"
-					</additionalOptions>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
