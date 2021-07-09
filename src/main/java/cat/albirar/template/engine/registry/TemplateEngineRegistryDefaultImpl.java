@@ -47,7 +47,7 @@ import cat.albirar.template.engine.service.TemplateNotAccessibleException;
 /**
  * A default registry for {@link ITemplateEngine}.
  * Any template engine should to be registered with {@link #register(ITemplateEngine)} method.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 2.2.0
  */
 @Service

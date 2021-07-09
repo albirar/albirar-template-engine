@@ -38,7 +38,7 @@ import cat.albirar.template.engine.models.ConfigurationPropertiesBean;
 
 /**
  * Test for application configuration.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 2.0.2
  */
 @SpringBootTest(args = "--debug")

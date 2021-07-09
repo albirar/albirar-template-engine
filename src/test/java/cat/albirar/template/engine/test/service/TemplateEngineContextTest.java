@@ -38,7 +38,7 @@ import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
 
 /**
  * Test for {@link TemplateEngineContext}.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 1.0.0
  */
 @ExtendWith(SpringExtension.class)

@@ -26,7 +26,7 @@ import cat.albirar.template.engine.models.TemplateInstanceBean;
 /**
  * A specific operational part of {@link ITemplateEngine} that render the template.
  * For use on factory.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 2.2.0
  */
 public interface IEngineRender {

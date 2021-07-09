@@ -37,7 +37,7 @@ import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImp
 
 /**
  * The configuration for template engine.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 1.0.0
  */
 @Configuration

@@ -35,7 +35,7 @@ import cat.albirar.template.engine.models.ConfigurationPropertiesBean;
 
 /**
  * Test change defaults of properties.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 3.1.0
  */
 @SpringBootTest(args = "--debug", properties = {"albirar.templates.charset=ISO-8859-1", "albirar.templates.directories=/temporal,/anotherDir"})

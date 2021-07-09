@@ -40,7 +40,7 @@ import lombok.experimental.SuperBuilder;
 
 /**
  * The properties of albirar template engine configuration.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 3.1.0
  */
 @SuperBuilder(toBuilder = true)

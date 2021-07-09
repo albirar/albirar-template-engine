@@ -20,7 +20,7 @@ package cat.albirar.template.engine.service;
 
 /**
  * Exception to indicate that the indicated template is not accessible, that is, doesn't exists OR is not a file OR is not readable.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 3.1.0
  */
 public class TemplateNotAccessibleException extends RenderingException {

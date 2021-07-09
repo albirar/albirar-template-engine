@@ -54,7 +54,7 @@ import cat.albirar.template.engine.test.service.AbstractTest;
  *    - Variable is not of expected type
  *    - ...
  *  
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 3.1.0
  */
 @ExtendWith(SpringExtension.class)
