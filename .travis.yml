@@ -2,16 +2,25 @@ env:
   global:
     - CC_TEST_REPORTER_ID=166299c39857f809bab5e3cd609e6f5b9500733a414a9e24ed5201af155bbfcc
 language: java
+addons:
+  sonarcloud:
+    organization: "albirar"
+    token:
+      secure: "oGQNFZOgH7y2NTDsjBD4zcJCKtA5wYYjCwQEDlU1vZeDL996OzdwHSIHhU1Bu5KfVqYVpWgdYxgLRmQfo68jxHTicyYdikOVnjZfSuLAEnnN86IsMxqQ7rS1h3QvGG3jt0TIoUwqycfScdXOJeYimS1qKPtPPDqjoz7uOvaBQpZtcb4i43nxUSMGD0I0ONeeXpBftViB17u3a8wE/CbkYuJvi1J/BwEqat1g0m9sGpH7l+OHY5dEHyjZtWjvtv7bjM+jfLbmRej6svgg4Ab6V1IC64lzBEX9Wgws1aen5ht8J3/EBgHS6dh8CEnJdK+xF98KDVZ22gh5PvQYu0aWmoD/lTAczwWOIC8ISNK6aTSN9Y+xsahHXgWNAJrVEWiwJfw5/qg55845sV1kT+nBG9ttybLJwPvbNFLE91revNnZU4s9rRpNLuLwduTzNiuBxBLD5fJf9OpGo39EksJa8JGYzOJz6lcypFaGQ7K9z86oBVSAvYNbUiztkdfkg5yiQ47zTr3DrtCAAHOSbRcY4xHmq1vhGPD7WSsPkP3W49sZfFkm3+QsBP4h4j2h77JJmObSrM42eQwj+pfU4dYOBHmAhtThs2RAEMtGowAq8zttfDBSRMk64LxmwNPvKJMPq/gTm8Q20F0FRlvAgT4ej9NV56b8v2GiBZFFI2fsUks=" # encrypted value of your token
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 jdk:
   - openjdk8
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+#before_script:
+#  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+#  - chmod +x ./cc-test-reporter
+#  - ./cc-test-reporter before-build
 script:
-  - mvn test
+#- mvn test
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=albirar_albirar-template-engine
 after_script:
-  - ./cc-test-reporter format-coverage ./target/jacoco-ut/jacoco.xml -t jacoco
-  - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
+#  - ./cc-test-reporter format-coverage ./target/jacoco-ut/jacoco.xml -t jacoco
+#  - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - bash <(curl -s https://codecov.io/bash)
