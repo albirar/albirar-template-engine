@@ -10,7 +10,6 @@ addons:
 jdk:
   - openjdk8
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent test
-  - mvn sonar:sonar -Dsonar.projectKey=albirar_albirar-template-engine
-after_script:
+  - mvn clean jacoco:prepare-agent test jacoco:report -Djacoco.formats=XML
   - bash <(curl -s https://codecov.io/bash)
+  - mvn sonar:sonar -Dsonar.projectKey=albirar_albirar-template-engine
