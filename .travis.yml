@@ -12,5 +12,5 @@ jdk:
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent test sonar:sonar -Dsonar.projectKey=albirar_albirar-template-engine
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - bash <(curl -s https://codecov.io/bash)
+  - exit $TRAVIS_TEST_RESULT
