@@ -59,9 +59,9 @@ public class TemplateEngineConfiguration {
         return templateEngine;
     }
     /**
-     * The template resolver for thymeleaf
-     * @param charset
-     * @return
+     * The template resolver for thymeleaf.
+     * @param configurationProperties The configuration properties for thymeleaf resolver.
+     * @return The resolver
      */
     @Bean
     @ConditionalOnMissingBean

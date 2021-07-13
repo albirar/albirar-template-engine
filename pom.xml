@@ -17,8 +17,6 @@
 	<url>https://albirar.github.io/albirar-template-engine/</url>
 
 	<properties>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.organization>albirar</sonar.organization>
 		<sonar.projectKey>albirar_albirar-template-engine</sonar.projectKey>
 	</properties>
 
@@ -94,38 +92,16 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-remote-resources-plugin</artifactId>
-				<version>1.7.0</version>
-				<configuration>
-					<resourceBundles>
-						<resourceBundle>${project.parent.groupId}:${project.parent.artifactId}:${project.parent.version}:jar:assembly-resources</resourceBundle>
-					</resourceBundles>
-					<outputDirectory>${project.build.directory}/site</outputDirectory>
-				</configuration>
-				<executions>
-					<execution>
-						<id>obtain-resources</id>
-						<phase>pre-site</phase>
-						<goals>
-							<goal>process</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>net.nicoulaj.maven.plugins</groupId>
 				<artifactId>checksum-maven-plugin</artifactId>
-				<version>1.9</version>
-				<executions>
-					<execution>
-						<id>generate-checksums</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>artifacts</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.projectlombok</groupId>

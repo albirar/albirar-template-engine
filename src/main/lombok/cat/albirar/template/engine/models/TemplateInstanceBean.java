@@ -80,7 +80,6 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
     /**
      * Build an instance with {@link Locale#getDefault()} and without {@link TemplateInstanceBean#getMessages()} and an empty {@link TemplateInstanceBean#getVariables()}. 
      * @param definition The template definition
-     * @param locale The locale
      * @return The instance configured ready to parse
      */
     @SuppressWarnings("rawtypes")
@@ -88,6 +87,11 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
         return buildBuilder(definition)
                 ;
     }
+    /**
+     * Creates a {@link TemplateInstanceBeanBuilder} from a {@link TemplateDefinitionBean}. 
+     * @param definition The template definition
+     * @return The builder with the definition properties assigned
+     */
     @SuppressWarnings({"rawtypes"})
     private static TemplateInstanceBeanBuilder buildBuilder(TemplateDefinitionBean definition) {
         return builder()
