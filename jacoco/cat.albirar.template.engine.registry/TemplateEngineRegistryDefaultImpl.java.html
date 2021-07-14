@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TemplateEngineRegistryDefaultImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Albirar Template Engine</a> &gt; <a href="index.source.html" class="el_package">cat.albirar.template.engine.registry</a> &gt; <span class="el_source">TemplateEngineRegistryDefaultImpl.java</span></div><h1>TemplateEngineRegistryDefaultImpl.java</h1><pre class="source lang-java linenums">/*
+ * This file is part of &quot;albirar-template-engine&quot;.
+ * 
+ * &quot;albirar-template-engine&quot; is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * &quot;albirar-template-engine&quot; is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with &quot;albirar-template-engine&quot; source code.  If not, see &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.
+ *
+ * Copyright (C) 2021 Octavi Fornés
+ */
+package cat.albirar.template.engine.registry;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
+
+import cat.albirar.template.engine.ITemplateEngineFactory;
+import cat.albirar.template.engine.models.TemplateInstanceBean;
+import cat.albirar.template.engine.service.IEngineRender;
+import cat.albirar.template.engine.service.ITemplateEngine;
+import cat.albirar.template.engine.service.ITemplateEngineRegistry;
+import cat.albirar.template.engine.service.TemplateNotAccessibleException;
+
+/**
+ * A default registry for {@link ITemplateEngine}.
+ * Any template engine should to be registered with {@link #register(ITemplateEngine)} method.
+ * @author Octavi Forn&amp;eacute;s &lt;mailto:ofornes@albirar.cat[]&gt;
+ * @since 2.2.0
+ */
+@Service
+<span class="fc" id="L54">public class TemplateEngineRegistryDefaultImpl implements ITemplateEngineRegistry, ITemplateEngineFactory {</span>
+<span class="fc" id="L55">    private static final Logger LOGGER = LoggerFactory.getLogger(TemplateEngineRegistryDefaultImpl.class);</span>
+    
+    @Autowired
+    private ApplicationContext applicationContext;
+    
+<span class="fc" id="L60">    private Map&lt;String, ITemplateEngine&gt; engines = new HashMap&lt;String, ITemplateEngine&gt;();</span>
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Optional&lt;ITemplateEngine&gt; getTemplateEngine(@NotBlank String templateLanguage) {
+<span class="fc" id="L67">        LOGGER.debug(&quot;Search template engine for {} template language&quot;, templateLanguage);</span>
+<span class="fc" id="L68">        return Optional.ofNullable(engines.get(templateLanguage));</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List&lt;String&gt; getRegisteredTemplateLanguages() {
+<span class="fc" id="L76">        LOGGER.debug(&quot;Compound registered template languages list {}&quot;, engines.keySet());</span>
+<span class="fc" id="L77">        return Collections.unmodifiableList(engines.keySet().stream().collect(Collectors.toList()));</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void register(@NotNull @Valid ITemplateEngine templateEngine) {
+<span class="fc" id="L85">        LOGGER.debug(&quot;Register a new template engine for {} template language&quot;, templateEngine.getTemplateLanguage());</span>
+<span class="fc" id="L86">        engines.put(templateEngine.getTemplateLanguage(), templateEngine);</span>
+<span class="fc" id="L87">    }</span>
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String renderTemplate(@NotNull @Valid TemplateInstanceBean template) {
+        Optional&lt;ITemplateEngine&gt; te;
+
+<span class="fc" id="L95">        LOGGER.debug(&quot;Render template {} of {} template language&quot;, template.getName(), template.getTemplateEngineLanguage());</span>
+        // Search the correct template engine by language and render
+<span class="fc" id="L97">        te = getTemplateEngine(template.getTemplateEngineLanguage());</span>
+        // If exists, render can be made...
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        if(te.isPresent()) {</span>
+<span class="fc" id="L100">            LOGGER.debug(&quot;Template engine for {} template language found, check resources...&quot;, template.getTemplateEngineLanguage());</span>
+            // Check the preconditions of template itself...
+<span class="fc" id="L102">            checkResource(template.getTemplate());</span>
+<span class="fc" id="L103">            LOGGER.debug(&quot;Template engine for {} template language found and resources checked, render it&quot;, template.getTemplateEngineLanguage());</span>
+            // If all is ok, render it
+<span class="fc" id="L105">            return te.get().renderTemplate(template);</span>
+        }
+<span class="fc" id="L107">        LOGGER.debug(&quot;Template engine for {} template language NOT FOUND!&quot;, template.getTemplateEngineLanguage());</span>
+        // If no template engine was found, a exception should to be thrown
+<span class="fc" id="L109">        throw new IllegalStateException(&quot;No engine was registerd for the template language '&quot;.concat(template.getTemplateEngineLanguage()).concat(&quot;'&quot;));</span>
+    }
+    /**
+     * Checks the preconditions for the indicated {@code strResource} as established at {@link IEngineRender#renderTemplate(TemplateInstanceBean)}.
+     * @param strResource The resource to check
+     */
+    private void checkResource(String strResource) {
+        Resource resource;
+        
+<span class="fc" id="L118">        LOGGER.debug(&quot;Check resource {}&quot;, strResource);</span>
+<span class="fc" id="L119">        resource = applicationContext.getResource(strResource);</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        if(!resource.exists()) {</span>
+<span class="fc" id="L121">            LOGGER.error(&quot;Resource {} DOES NOT EXISTS!&quot;, strResource);</span>
+<span class="fc" id="L122">            throw new TemplateNotAccessibleException(String.format(&quot;The resource '%s' does not exists!&quot;, strResource));</span>
+        }
+        try {
+<span class="fc bfc" id="L125" title="All 2 branches covered.">            if(!resource.getFile().isFile()) {</span>
+<span class="fc" id="L126">                LOGGER.error(&quot;Resource {} IS NOT A FILE!&quot;, strResource);</span>
+<span class="fc" id="L127">                throw new TemplateNotAccessibleException(String.format(&quot;The resource '%s' is not a regular file!&quot;, strResource));</span>
+            }
+        }
+<span class="nc" id="L130">        catch(IOException e) {</span>
+<span class="nc" id="L131">            LOGGER.error(String.format(&quot;IOException on get the file for resource %s!&quot;, strResource), e);</span>
+<span class="fc" id="L132">        }</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        if(!resource.isReadable()) {</span>
+<span class="fc" id="L134">            LOGGER.error(&quot;Resource {} IS NOT READABLE!&quot;, strResource);</span>
+<span class="fc" id="L135">            throw new TemplateNotAccessibleException(String.format(&quot;The resource '%s' is not readable!&quot;, strResource));</span>
+        }
+<span class="fc" id="L137">        LOGGER.debug(&quot;Resource {} IS OK!&quot;, strResource);</span>
+<span class="fc" id="L138">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

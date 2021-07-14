@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TemplateEngineConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Albirar Template Engine</a> &gt; <a href="index.source.html" class="el_package">cat.albirar.template.engine.configuration</a> &gt; <span class="el_source">TemplateEngineConfiguration.java</span></div><h1>TemplateEngineConfiguration.java</h1><pre class="source lang-java linenums">/*
+ * This file is part of &quot;albirar albirar-template-engine&quot;.
+ * 
+ * &quot;albirar albirar-template-engine&quot; is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ * 
+ * &quot;albirar albirar-template-engine&quot; is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+ * License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with &quot;albirar albirar-template-engine&quot; source
+ * code. If not, see &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.
+ *
+ * Copyright (C) 2020 Octavi Fornés
+ */
+package cat.albirar.template.engine.configuration;
+
+import static cat.albirar.template.engine.configuration.PropertiesTemplate.ROOT_TEMPLATE_PROPERTIES;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+
+import cat.albirar.template.engine.models.ConfigurationPropertiesBean;
+import cat.albirar.template.engine.registry.TemplateEngineRegistryDefaultImpl;
+import cat.albirar.template.engine.service.ITemplateEngine;
+import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl;
+
+/**
+ * The configuration for template engine.
+ * @author Octavi Forn&amp;eacute;s &lt;mailto:ofornes@albirar.cat[]&gt;
+ * @since 1.0.0
+ */
+@Configuration
+@AutoConfigureOrder(Integer.MAX_VALUE)
+@EnableConfigurationProperties
+@PropertySource(&quot;classpath:/albirar-template-engine.yaml&quot;)
+@ComponentScan(basePackageClasses = {ITemplateEngine.class, ThymeleafSpringTemplateEngineImpl.class, TemplateEngineRegistryDefaultImpl.class})
+<span class="fc" id="L48">public class TemplateEngineConfiguration {</span>
+    /**
+     * The {@link SpringTemplateEngine} to use on rendering.
+     * @param resolver The resolver for resources
+     * @return The {@link SpringTemplateEngine} configured to use them
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public SpringTemplateEngine templateEngine(@Autowired SpringResourceTemplateResolver resolver) {
+<span class="fc" id="L57">        SpringTemplateEngine templateEngine = new SpringTemplateEngine();</span>
+<span class="fc" id="L58">        templateEngine.setTemplateResolver(resolver);</span>
+<span class="fc" id="L59">        return templateEngine;</span>
+    }
+    /**
+     * The template resolver for thymeleaf.
+     * @param configurationProperties The configuration properties for thymeleaf resolver.
+     * @return The resolver
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public SpringResourceTemplateResolver thymeleafTemplateResolver(@Autowired ConfigurationPropertiesBean configurationProperties) {
+<span class="fc" id="L69">        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();</span>
+<span class="fc" id="L70">        templateResolver.setCharacterEncoding(configurationProperties.getCharset().name());</span>
+<span class="fc" id="L71">        return templateResolver;</span>
+    }
+    
+
+    @Bean
+    @ConfigurationProperties(prefix = ROOT_TEMPLATE_PROPERTIES)
+    public ConfigurationPropertiesBean configurationPropertiesBean() {
+<span class="fc" id="L78">        return ConfigurationPropertiesBean.builder().build();</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

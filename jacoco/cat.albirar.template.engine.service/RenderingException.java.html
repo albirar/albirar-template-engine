@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RenderingException.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Albirar Template Engine</a> &gt; <a href="index.source.html" class="el_package">cat.albirar.template.engine.service</a> &gt; <span class="el_source">RenderingException.java</span></div><h1>RenderingException.java</h1><pre class="source lang-java linenums">/*
+ * This file is part of &quot;albirar-template-engine&quot;.
+ * 
+ * &quot;albirar-template-engine&quot; is free software: you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ * 
+ * &quot;albirar-template-engine&quot; is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with &quot;albirar-template-engine&quot; source code.
+ * If not, see &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.
+ *
+ * Copyright (C) 2021 Octavi Fornés
+ */
+package cat.albirar.template.engine.service;
+
+/**
+ * Root exception for rendering exception cases.
+ * 
+ * @author Octavi Forn&amp;eacute;s &lt;mailto:ofornes@albirar.cat[]&gt;
+ * @since 3.1.0
+ */
+public class RenderingException extends RuntimeException {
+    private static final long serialVersionUID = -3224744698039688925L;
+
+    /**
+     * See {@link RuntimeException#RuntimeException(String, Throwable)}.
+     * @param message The exception message
+     * @param cause The exception cause
+     */
+    public RenderingException(String message, Throwable cause) {
+<span class="nc" id="L34">        super(message, cause);</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * See {@link RuntimeException#RuntimeException(String)}.
+     * @param message The exception message
+     */
+    public RenderingException(String message) {
+<span class="fc" id="L42">        super(message);</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * See {@link RuntimeException#RuntimeException(Throwable)}.
+     * @param cause The exception cause
+     */
+    public RenderingException(Throwable cause) {
+<span class="nc" id="L50">        super(cause);</span>
+<span class="nc" id="L51">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

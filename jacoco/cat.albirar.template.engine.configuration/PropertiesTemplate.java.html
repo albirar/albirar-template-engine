@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PropertiesTemplate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Albirar Template Engine</a> &gt; <a href="index.source.html" class="el_package">cat.albirar.template.engine.configuration</a> &gt; <span class="el_source">PropertiesTemplate.java</span></div><h1>PropertiesTemplate.java</h1><pre class="source lang-java linenums">/*
+ * This file is part of &quot;albirar-template-engine&quot;.
+ * 
+ * &quot;albirar-template-engine&quot; is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * &quot;albirar-template-engine&quot; is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with &quot;albirar-template-engine&quot; source code.  If not, see &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.
+ *
+ * Copyright (C) 2020 Octavi Fornés
+ */
+package cat.albirar.template.engine.configuration;
+
+import java.nio.charset.Charset;
+
+/**
+ * The property name configuration constants.
+ * @author Octavi Forn&amp;eacute;s &lt;mailto:ofornes@albirar.cat[]&gt;
+ * @since 1.0.0
+ */
+public interface PropertiesTemplate {
+    /**
+     * Root for all configuration properties of template engine.
+     */
+    public static final String ROOT_TEMPLATE_PROPERTIES = &quot;albirar.templates&quot;;
+    /**
+     * The charset to be used on template engine.
+     */
+    public static final String CHARSET_PROPERTY_NAME = ROOT_TEMPLATE_PROPERTIES + &quot;.charset&quot;;
+    /**
+     * The global wide default charset name.
+     */
+    public static final String DEFAULT_CHARSET_NAME = &quot;UTF-8&quot;;
+    /**
+     * The global wide default charset.
+     */
+<span class="fc" id="L44">    public static final Charset DEFAULT_CHARSET = Charset.forName(DEFAULT_CHARSET_NAME);</span>
+    /**
+     * The default array of directories.
+     */
+<span class="fc" id="L48">    public static final String [] DEFAULT_DIR_ARRAY = { &quot;/tmp&quot; }; </span>
+    /**
+     * Directory or directories of templates.
+     * Can be only one o more than one (array).
+     */
+    public static final String DIR_TEMPLATES_PROPERTY_NAME = ROOT_TEMPLATE_PROPERTIES + &quot;.directories&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

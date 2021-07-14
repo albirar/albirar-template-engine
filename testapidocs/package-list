@@ -1,3 +1,5 @@
 cat.albirar.template.engine.test.app.configuration
+cat.albirar.template.engine.test.app.configuration.properties
 cat.albirar.template.engine.test.configuration
 cat.albirar.template.engine.test.service
+cat.albirar.template.engine.test.service.exceptions
