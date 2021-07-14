@@ -38,7 +38,7 @@ import lombok.experimental.SuperBuilder;
 
 /**
  * The template definition with variables, messages and locale ready to render.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 1.0.0
  */
 @Data
@@ -80,7 +80,6 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
     /**
      * Build an instance with {@link Locale#getDefault()} and without {@link TemplateInstanceBean#getMessages()} and an empty {@link TemplateInstanceBean#getVariables()}. 
      * @param definition The template definition
-     * @param locale The locale
      * @return The instance configured ready to parse
      */
     @SuppressWarnings("rawtypes")
@@ -88,6 +87,11 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
         return buildBuilder(definition)
                 ;
     }
+    /**
+     * Creates a {@link TemplateInstanceBeanBuilder} from a {@link TemplateDefinitionBean}. 
+     * @param definition The template definition
+     * @return The builder with the definition properties assigned
+     */
     @SuppressWarnings({"rawtypes"})
     private static TemplateInstanceBeanBuilder buildBuilder(TemplateDefinitionBean definition) {
         return builder()

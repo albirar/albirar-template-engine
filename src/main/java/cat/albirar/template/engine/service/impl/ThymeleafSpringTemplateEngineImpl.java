@@ -35,9 +35,9 @@ import cat.albirar.template.engine.service.ITemplateEngineRegistry;
 import cat.albirar.template.engine.service.TemplateEngineContext;
 
 /**
- * The default {@link ITemplateEngine} implementation backed with {@link SpringTemplateEngine}, that supports <a href="https://www.thymeleaf.org/">thymeleaf</a> 
- * {@code markup language} with <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-view-thymeleaf">spring MVC</a> enhancements.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * The default {@link ITemplateEngine} implementation backed with {@link SpringTemplateEngine}, that supports https://www.thymeleaf.org/[thymeleaf] 
+ * {@code markup language} with https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-view-thymeleaf[spring MVC] enhancements.
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 1.0.0
  */
 @Component

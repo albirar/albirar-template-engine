@@ -1,17 +1,15 @@
 env:
   global:
-    - CC_TEST_REPORTER_ID=166299c39857f809bab5e3cd609e6f5b9500733a414a9e24ed5201af155bbfcc
+  - CC_TEST_REPORTER_ID=166299c39857f809bab5e3cd609e6f5b9500733a414a9e24ed5201af155bbfcc
 language: java
-jdk:
-  - openjdk8
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+jdk: openjdk8
 script:
-  - mvn cobertura:cobertura test -B -Dcobertura.report.format=xml
-after_script:
-  - ./cc-test-reporter format-coverage ./target/site/cobertura/coverage.xml -t cobertura
-  - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - mvn clean jacoco:prepare-agent install jacoco:report -Djacoco.formats=XML
   - bash <(curl -s https://codecov.io/bash)
+  # Change to jdk11 (sonar requirement)
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
+  - export JAVA_HOME=$HOME/openjdk11
+  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 --target $JAVA_HOME
+  # Execute sonar 
+  - mvn sonar:sonar

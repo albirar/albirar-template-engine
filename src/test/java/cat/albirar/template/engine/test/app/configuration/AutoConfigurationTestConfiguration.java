@@ -18,20 +18,18 @@
  */
 package cat.albirar.template.engine.test.app.configuration;
 
-import static cat.albirar.template.engine.configuration.PropertiesTemplate.CHARSET_VALUE;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
 import cat.albirar.template.engine.configuration.AutoconfigureTemplateEngine;
+import cat.albirar.template.engine.models.ConfigurationPropertiesBean;
 
 /**
  * Testing configuration.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 2.0.2
  */
 @SpringBootConfiguration
@@ -53,12 +51,12 @@ public class AutoConfigurationTestConfiguration {
     /**
      * The template resolver for thymeleaf
      * @param charset
-     * @return
+     * @return The template resolver
      */
     @Bean
-    public SpringResourceTemplateResolver thymeleafTemplateResolver(@Value(CHARSET_VALUE) String charset) {
+    public SpringResourceTemplateResolver thymeleafTemplateResolver(@Autowired ConfigurationPropertiesBean configurationProperties) {
         templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setCharacterEncoding(charset);
+        templateResolver.setCharacterEncoding(configurationProperties.getCharset().name());
         return templateResolver;
     }
 }

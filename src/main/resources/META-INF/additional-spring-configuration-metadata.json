@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "albirar.templates.charset",
+    "type": "java.nio.charset.Charset",
+    "description": "The default charset for templates and output"
+  },
+  {
+    "name": "albirar.templates.directories",
+    "type": "java.util.List<java.nio.file.Path>",
+    "description": "An array of Path elements with directories for load templates"
+  }
+]}

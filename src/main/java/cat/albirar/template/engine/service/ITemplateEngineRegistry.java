@@ -28,7 +28,7 @@ import cat.albirar.template.engine.ITemplateEngineFactory;
 /**
  * A template engine registry that collaborate with {@link ITemplateEngineFactory} for internal use of template engine classes.
  * The implemented template engines should to register itself with {@link #register(ITemplateEngine)} method in order to be available on {@link ITemplateEngineFactory}.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 2.2.0
  */
 @Validated

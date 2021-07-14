@@ -38,7 +38,7 @@ import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
 
 /**
  * Test for {@link TemplateEngineContext}.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 1.0.0
  */
 @ExtendWith(SpringExtension.class)
@@ -48,7 +48,7 @@ public class TemplateEngineContextTest extends AbstractTest {
      * Test the validation conditions to methods, like null, empty string, etc.
      */
     @Test
-    public void testValidations() {
+    public void when_argumentsToMethodsAreNotValids_then_ValidationExceptionIsThrown() {
         TemplateEngineContext tec;
         
         assertThrows(ValidationException.class, () -> new TemplateEngineContext(null));
@@ -68,7 +68,7 @@ public class TemplateEngineContextTest extends AbstractTest {
      * Test the methods that returns anything.
      */
     @Test
-    public void testGetters() {
+    public void when_valuesAreSetted_then_allGettersAreOk() {
         TemplateEngineContext tec;
         TemplateInstanceBean tib;
         

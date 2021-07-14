@@ -1,0 +1,34 @@
+= Status
+
+Octavi Fornés <ofornes@albirar.cat>
+
+:doctype: article
+:encoding: utf-8
+:lang: en
+
+[cols="1,1"]
+|===
+|CI master
+|image:https://travis-ci.com/albirar/albirar-template-engine.svg?branch=master["Build Status", link="https://travis-ci.com/albirar/albirar-template-engine"]
+
+|CI develop
+|image:https://travis-ci.com/albirar/albirar-template-engine.svg?branch=develop["Build Status", link="https://travis-ci.com/albirar/albirar-template-engine"]
+
+|Coverage master
+|image:https://img.shields.io/codecov/c/github/albirar/albirar-template-engine/branch/master["Coverage master", link="https://app.codecov.io/gh/albirar/albirar-template-engine/branch/master"]
+
+|Coverage develop
+|image:https://img.shields.io/codecov/c/github/albirar/albirar-template-engine/branch/develop["Coverage develop", link="https://app.codecov.io/gh/albirar/albirar-template-engine/branch/develop"]
+
+|Maintainability
+|image:https://img.shields.io/codeclimate/maintainability/albirar/albirar-template-engine?logo=code-climate["Maintainability", link="https://codeclimate.com/github/albirar/albirar-template-engine/maintainability"]
+
+|Technical Debt
+|image:https://img.shields.io/codeclimate/tech-debt/albirar/albirar-template-engine?logo=code-climate["Code Climate technical debt", link="https://codeclimate.com/github/albirar/albirar-template-engine"]
+
+|Maven Central
+|image:https://img.shields.io/maven-central/v/cat.albirar.lib/albirar-template-engine?logo=apache-maven["Maven Central Version", link="https://search.maven.org/artifact/cat.albirar.lib/albirar-template-engine"]
+
+|Dependencies status
+|image:https://img.shields.io/librariesio/github/albirar/albirar-template-engine["Libraries.io dependency status", link="https://libraries.io/github/albirar/albirar-template-engine"]
+|===

@@ -14,39 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with "albirar-template-engine" source code.  If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
  *
- * Copyright (C) 2020 Octavi Fornés
+ * Copyright (C) 2021 Octavi Fornés
  */
-package cat.albirar.template.engine;
+package cat.albirar.template.engine.test.app.configuration.properties;
 
-import org.thymeleaf.templatemode.TemplateMode;
+import org.springframework.boot.SpringBootConfiguration;
+
+import cat.albirar.template.engine.configuration.AutoconfigureTemplateEngine;
 
 /**
- * Content type of resulting template.
+ * Testing configuration.
  * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
- * @since 1.0.0
+ * @since 2.0.2
  */
-public enum EContentType {
-    TEXT_PLAIN,
-    HTML
-    ;
-    /**
-     * Gets the media type for this content type.
-     * @return The media type
-     */
-    public String getMediaType() {
-        if(this == HTML) {
-            return "text/html";
-        }
-        return "text/plain";
-    }
-    /**
-     * Get the {@link TemplateMode} for this content type.
-     * @return the {@link TemplateMode} related to this element.
-     */
-    public TemplateMode getTemplateMode() {
-        if(this == HTML) {
-            return TemplateMode.HTML;
-        }
-        return TemplateMode.TEXT;
-    }
+@SpringBootConfiguration
+@AutoconfigureTemplateEngine
+public class PropertiesTestConfiguration {
 }

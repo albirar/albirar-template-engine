@@ -18,11 +18,11 @@
  */
 package cat.albirar.template.engine.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
+import java.nio.charset.Charset;
 
 /**
  * The property name configuration constants.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 1.0.0
  */
 public interface PropertiesTemplate {
@@ -35,7 +35,20 @@ public interface PropertiesTemplate {
      */
     public static final String CHARSET_PROPERTY_NAME = ROOT_TEMPLATE_PROPERTIES + ".charset";
     /**
-     * The {@link Value} expression for charset configuration, default {@code UTF-8}.
+     * The global wide default charset name.
      */
-    public static final String CHARSET_VALUE = "${" + CHARSET_PROPERTY_NAME + ":UTF-8}";
+    public static final String DEFAULT_CHARSET_NAME = "UTF-8";
+    /**
+     * The global wide default charset.
+     */
+    public static final Charset DEFAULT_CHARSET = Charset.forName(DEFAULT_CHARSET_NAME);
+    /**
+     * The default array of directories.
+     */
+    public static final String [] DEFAULT_DIR_ARRAY = { "/tmp" }; 
+    /**
+     * Directory or directories of templates.
+     * Can be only one o more than one (array).
+     */
+    public static final String DIR_TEMPLATES_PROPERTY_NAME = ROOT_TEMPLATE_PROPERTIES + ".directories";
 }

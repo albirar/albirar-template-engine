@@ -32,13 +32,15 @@ import cat.albirar.template.engine.service.ITemplateEngine;
  * Exposes access to available template engines.
  * 
  * Can be used as:
- * ```java
+ * [source,java]
+ * --
  * @Autowired private ITemplateEngineFactory factory;
  * 
  * // instantiate template definition...
  * factory.render(templateInstance);
- * ```
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * --
+ * 
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 2.2.0
  */
 public interface ITemplateEngineFactory extends IEngineRender {

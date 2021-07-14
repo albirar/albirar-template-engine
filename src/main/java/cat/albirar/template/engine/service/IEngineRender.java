@@ -26,7 +26,7 @@ import cat.albirar.template.engine.models.TemplateInstanceBean;
 /**
  * A specific operational part of {@link ITemplateEngine} that render the template.
  * For use on factory.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 2.2.0
  */
 public interface IEngineRender {
@@ -35,6 +35,8 @@ public interface IEngineRender {
      * @param template The template definition
      * @return The resulting template rendered
      * @throws IllegalStateException If the indicated {@code template} language is unknown (not registered engine is available for this template language)
+     * @throws TemplateNotAccessibleException If the indicated template is not accessible, ex: does'nt exists or is not a file or there are'nt authorization to read them
+     * @throws RenderingException The exception throw if there are problems in the rendering process, includes template language syntax error, variable is not of excepted type, etc
      */
     public String renderTemplate(@NotNull @Valid TemplateInstanceBean template);
 }

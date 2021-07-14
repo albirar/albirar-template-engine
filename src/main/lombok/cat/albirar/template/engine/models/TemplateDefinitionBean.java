@@ -18,6 +18,8 @@
  */
 package cat.albirar.template.engine.models;
 
+import static cat.albirar.template.engine.configuration.PropertiesTemplate.DEFAULT_CHARSET_NAME;
+
 import java.io.Serializable;
 import java.nio.charset.Charset;
 
@@ -36,7 +38,7 @@ import lombok.experimental.SuperBuilder;
 
 /**
  * The template definition bean.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 1.0.0, 2.2.0
  */
 @SuperBuilder(toBuilder = true)
@@ -46,7 +48,7 @@ import lombok.experimental.SuperBuilder;
 public class TemplateDefinitionBean implements Serializable {
     private static final long serialVersionUID = 7550617345858079032L;
     
-    public static final String DEFAULT_CHARSET = "utf-8";
+    public static final String DEFAULT_CHARSET = DEFAULT_CHARSET_NAME;
     public static final EContentType DEFAULT_CONTENT_TYPE = EContentType.TEXT_PLAIN;
     
 

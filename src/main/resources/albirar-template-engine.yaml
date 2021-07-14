@@ -1,0 +1,4 @@
+albirar:
+  templates:
+    charset: UTF-8
+    directories: ['/tmp', '/temp']

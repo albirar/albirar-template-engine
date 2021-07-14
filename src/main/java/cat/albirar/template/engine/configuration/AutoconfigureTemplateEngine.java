@@ -29,7 +29,7 @@ import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 
 /**
  * Autoconfigure annotation for spring-boot configuration.
- * @author Octavi Forn&eacute;s &lt;<a href="mailto:ofornes@albirar.cat">ofornes@albirar.cat</a>&gt;
+ * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 2.0.2
  */
 @Documented
