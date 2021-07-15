@@ -3,7 +3,7 @@ Albirar Template Engine,cat.albirar.template.engine.registry,TemplateEngineRegis
 Albirar Template Engine,cat.albirar.template.engine.service.impl,ThymeleafSpringTemplateEngineImpl,0,50,0,0,0,12,0,5,0,5
 Albirar Template Engine,cat.albirar.template.engine.configuration,TemplateEngineConfiguration,0,26,0,0,0,8,0,4,0,4
 Albirar Template Engine,cat.albirar.template.engine.configuration,PropertiesTemplate,0,11,0,0,0,2,0,1,0,1
-Albirar Template Engine,cat.albirar.template.engine.models,ConfigurationPropertiesBean,149,38,24,2,32,10,23,6,10,6
+Albirar Template Engine,cat.albirar.template.engine.models,ConfigurationPropertiesBean,138,49,24,2,27,15,20,9,7,9
 Albirar Template Engine,cat.albirar.template.engine.models,TemplateDefinitionBean.TemplateDefinitionBeanBuilder,32,71,0,0,1,21,1,8,1,8
 Albirar Template Engine,cat.albirar.template.engine.models,ConfigurationPropertiesBean.ConfigurationPropertiesBeanBuilderImpl,2,5,0,0,1,1,1,1,1,1
 Albirar Template Engine,cat.albirar.template.engine.models,TemplateInstanceBean,181,126,32,2,42,18,26,12,10,11
@@ -13,6 +13,6 @@ Albirar Template Engine,cat.albirar.template.engine.models,TemplateDefinitionBea
 Albirar Template Engine,cat.albirar.template.engine.models,ConfigurationPropertiesBean.ConfigurationPropertiesBeanBuilder,52,3,0,0,12,1,5,1,5,1
 Albirar Template Engine,cat.albirar.template.engine.models,TemplateInstanceBean.TemplateInstanceBeanBuilder,27,50,0,0,1,15,1,6,1,6
 Albirar Template Engine,cat.albirar.template.engine.service,TemplateNotAccessibleException,9,4,0,0,4,2,2,1,2,1
-Albirar Template Engine,cat.albirar.template.engine.service,TemplateEngineContext,24,26,4,2,6,8,5,4,2,4
+Albirar Template Engine,cat.albirar.template.engine.service,TemplateEngineContext,0,50,0,6,0,14,0,9,0,6
 Albirar Template Engine,cat.albirar.template.engine.service,RenderingException,9,4,0,0,4,2,2,1,2,1
 Albirar Template Engine,cat.albirar.template.engine,EContentType,0,38,0,4,0,9,0,5,0,3

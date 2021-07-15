@@ -40,8 +40,8 @@ public class TemplateEngineContext implements IContext {
      * Constructor.
      */
 <span class="fc" id="L42">    public TemplateEngineContext(TemplateInstanceBean t) {</span>
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">        if(t == null) {</span>
-<span class="nc" id="L44">            throw new ValidationException();</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if(t == null) {</span>
+<span class="fc" id="L44">            throw new ValidationException();</span>
         }
 <span class="fc" id="L46">        this.templateInstance = t;</span>
 <span class="fc" id="L47">    }</span>
@@ -58,10 +58,10 @@ public class TemplateEngineContext implements IContext {
      */
     @Override
     public boolean containsVariable(String name) {
-<span class="nc bnc" id="L61" title="All 2 branches missed.">        if(!StringUtils.hasText(name)) {</span>
-<span class="nc" id="L62">            throw new ValidationException();</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if(!StringUtils.hasText(name)) {</span>
+<span class="fc" id="L62">            throw new ValidationException();</span>
         }
-<span class="nc" id="L64">        return templateInstance.getVariables().containsKey(name);</span>
+<span class="fc" id="L64">        return templateInstance.getVariables().containsKey(name);</span>
     }
 
     /**
@@ -77,8 +77,8 @@ public class TemplateEngineContext implements IContext {
      */
     @Override
     public Object getVariable(String name) {
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if(!StringUtils.hasText(name)) {</span>
-<span class="nc" id="L81">            throw new ValidationException();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if(!StringUtils.hasText(name)) {</span>
+<span class="fc" id="L81">            throw new ValidationException();</span>
         }
 <span class="fc" id="L83">        return templateInstance.getVariables().get(name);</span>
     }
@@ -87,7 +87,7 @@ public class TemplateEngineContext implements IContext {
      * @return The template instance
      */
     public TemplateInstanceBean getTemplateInstance() {
-<span class="nc" id="L90">        return templateInstance;</span>
+<span class="fc" id="L90">        return templateInstance;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
