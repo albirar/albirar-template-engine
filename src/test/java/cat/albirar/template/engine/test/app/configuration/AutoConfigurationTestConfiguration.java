@@ -50,7 +50,7 @@ public class AutoConfigurationTestConfiguration {
     }
     /**
      * The template resolver for thymeleaf
-     * @param charset
+     * @param configurationProperties The properties to configure the resolver.
      * @return The template resolver
      */
     @Bean

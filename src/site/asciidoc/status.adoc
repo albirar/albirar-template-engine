@@ -8,23 +8,26 @@ Octavi Fornés <ofornes@albirar.cat>
 
 [cols="1,1"]
 |===
-|CI master
-|image:https://travis-ci.com/albirar/albirar-template-engine.svg?branch=master["Build Status", link="https://travis-ci.com/albirar/albirar-template-engine"]
+|CI main
+|image:https://img.shields.io/travis/com/albirar/albirar-template-engine/master?logo=travis-ci["Build Status", link="https://travis-ci.com/albirar/albirar-template-engine"]
 
 |CI develop
-|image:https://travis-ci.com/albirar/albirar-template-engine.svg?branch=develop["Build Status", link="https://travis-ci.com/albirar/albirar-template-engine"]
+|image:https://img.shields.io/travis/com/albirar/albirar-template-engine/develop?logo=travis-ci["Build Status", link="https://travis-ci.com/albirar/albirar-template-engine"]
 
-|Coverage master
-|image:https://img.shields.io/codecov/c/github/albirar/albirar-template-engine/branch/master["Coverage master", link="https://app.codecov.io/gh/albirar/albirar-template-engine/branch/master"]
+|Coverage main
+|image:https://sonarcloud.io/api/project_badges/measure?project=albirar_albirar-template-engine&metric=coverage["Coverage", link="https://sonarcloud.io/dashboard?id=albirar_albirar-template-engine"]
 
 |Coverage develop
-|image:https://img.shields.io/codecov/c/github/albirar/albirar-template-engine/branch/develop["Coverage develop", link="https://app.codecov.io/gh/albirar/albirar-template-engine/branch/develop"]
+|image:https://img.shields.io/codecov/c/github/albirar/albirar-template-engine/branch/develop?logo=codecov["Coverage develop", link="https://app.codecov.io/gh/albirar/albirar-template-engine/branch/develop"]
+
+|Quality gate
+|image:https://sonarcloud.io/api/project_badges/measure?project=albirar_albirar-template-engine&metric=alert_status["Quality gate", link=https://sonarcloud.io/dashboard?id=albirar_albirar-template-engine]
 
 |Maintainability
-|image:https://img.shields.io/codeclimate/maintainability/albirar/albirar-template-engine?logo=code-climate["Maintainability", link="https://codeclimate.com/github/albirar/albirar-template-engine/maintainability"]
+|image:https://sonarcloud.io/api/project_badges/measure?project=albirar_albirar-template-engine&metric=sqale_rating["Maintainability", link="hhttps://sonarcloud.io/dashboard?id=albirar_albirar-template-engine"]
 
 |Technical Debt
-|image:https://img.shields.io/codeclimate/tech-debt/albirar/albirar-template-engine?logo=code-climate["Code Climate technical debt", link="https://codeclimate.com/github/albirar/albirar-template-engine"]
+|image:https://sonarcloud.io/api/project_badges/measure?project=albirar_albirar-template-engine&metric=sqale_index["Technical debt", link="https://sonarcloud.io/dashboard?id=albirar_albirar-template-engine"]
 
 |Maven Central
 |image:https://img.shields.io/maven-central/v/cat.albirar.lib/albirar-template-engine?logo=apache-maven["Maven Central Version", link="https://search.maven.org/artifact/cat.albirar.lib/albirar-template-engine"]
