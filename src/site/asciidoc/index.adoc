@@ -25,8 +25,10 @@ See link:dependency-info.html[Add to your project]
 
 == Usage
 
-See link:usage.html["Usage"]
+See link:usage.html[Usage]
 
 == Status
 
-See link:status.html["Status"]
+image:https://sonarcloud.io/api/project_badges/quality_gate?project=albirar_albirar-template-engine["Quality gate", link="https://sonarcloud.io/dashboard?id=albirar_albirar-template-engine"]
+
+See link:status.html[Status]

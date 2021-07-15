@@ -152,36 +152,7 @@
 		</plugins>
 	</build>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>dependency-info</report>
-							<report>dependencies</report>
-							<report>team</report>
-							<report>ci-management</report>
-							<report>licenses</report>
-							<report>scm</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-		</plugins>
-	</reporting>
-
 	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
 		<site>
 			<id>site_github</id>
 			<url>file://${project.build.directory}/staging</url>
