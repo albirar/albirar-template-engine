@@ -5,35 +5,9 @@ Octavi Fornés <ofornes@albirar.cat>
 :doctype: article
 :encoding: utf-8
 :lang: en
+:revnumber: {albirar-te-engine.version}
 
-Once link:dependency.html[dependencies has been set], usage is easy.
-
-== Configuration
-
-First of all, should to configure. This library is auto-configurable with the spring boot annotation https://docs.spring.io/spring-boot/docs/{spring-boot-version}/api/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html[@EnableAutoConfiguration]:
-
-[source, java]
-----
-@SpringBootApplication
-@EnableAutoConfiguration
-public class DemoApplication {
-    // ...
-----
-
-
-Also you can use the annotation link:apidocs/cat/albirar/template/engine/configuration/AutoconfigureTemplateEngine.html[@AutoconfigureTemplateEngine]:
-
-
-[source, java]
-----
-@SpringBootApplication
-@AutoconfigureTemplateEngine
-public class DemoApplication {
-    // ...
-----
-
-
-If not, you can import the configuration class link:apidocs/cat/albirar/template/engine/configuration/TemplateEngineConfiguration.html[`cat.albirar.template.engine.configuration.TemplateEngineConfiguration`].
+Once link:engines.html[dependencies to any template engine has been set], usage is easy.
 
 == Template definition
 
@@ -102,16 +76,9 @@ The factory lookup the applicable template engine based on template language ind
 
 == Engines
 
-Since version `3.0.0`, library is capable of render templates written in different *template languages*, as 
-
-* https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html[Thymeleaf]
-* https://velocity.apache.org/engine[Velocity], https://freemarker.apache.org/[FreeMarker]
-* https://github.com/spullara/mustache.java[Mustache]
-* https://www.stringtemplate.org/[StringTemplate], etc
-
 For more information see link:engines.html[Engines].
 
-Each template definition should to inform the property `templateLanguage`, used to resolve the template engine for rendering.
+Each template definition should to inform the property `templateLanguage`, used to resolve the template engine for rendering. See documentation of each template engine used to know the `template language identifier` for these template engine.
 
 The rendering is made with a unique singleton template engine factory.
 
@@ -128,7 +95,7 @@ private ITemplateEngineFactory templateEnginefactory;
 
 ----
 
-Call method `renderTemplate` with the template instance and use the return value as the render result.
+Call method `renderTemplate` of `template factory` with the template instance and use the return value as the render result.
 
 [source, java]
 ----
@@ -138,6 +105,7 @@ try {
     r = templateEngineFactory.renderTemplate(tInstance);    
 } catch (IllegalStateException e) {
     LOGGER.error(String.format("No template engine was found for %s", tInstance.getTemplateLanguage()), e);
+    // ...
 }
 // ...
 ----
@@ -146,5 +114,5 @@ Internally, the factory gets the value of property `templateLanguage` at templat
 
 If a template engine was found, the factory delegates the rendering to the template engine and return the result of rendering.
 
-If no template engine was found, a `IllegalStateException` is thrown.
+If no template engine was found, a `java.lang.IllegalStateException` is thrown.
 

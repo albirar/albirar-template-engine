@@ -18,6 +18,7 @@
 
 	<properties>
 		<sonar.projectKey>albirar_albirar-template-engine</sonar.projectKey>
+		<albirar-te-engine.version>${project.version}</albirar-te-engine.version>
 	</properties>
 
 	<licenses>
@@ -58,18 +59,6 @@
 	</developers>
 
 	<dependencies>
-		<!-- Templating -->
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf</artifactId>
-			<version>${spring-thymeleaf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf-spring5</artifactId>
-			<version>${spring-thymeleaf.version}</version>
-		</dependency>
-
 		<!-- TEST -->
 		<dependency>
 			<groupId>org.jsoup</groupId>

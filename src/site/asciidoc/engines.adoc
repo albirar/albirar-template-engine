@@ -5,28 +5,43 @@ Octavi Fornés <ofornes@albirar.cat>
 :doctype: article
 :encoding: utf-8
 :lang: en
+:revnumber: {albirar-te-engine.version}
+:toc: left
+
+Since version `3.0.0`, this library is capable of render templates written in different *template languages*, as 
+
+* https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html[Thymeleaf]
+* https://velocity.apache.org/engine[Velocity]
+* https://freemarker.apache.org/[FreeMarker]
+* https://github.com/spullara/mustache.java[Mustache]
+* https://www.stringtemplate.org/[StringTemplate]
+* etc
+
+Each template language rendering is made with a _Template Engine_, implemented in jars other than this one.
 
 == Definition
 
-A template engine is a class capable of render a specific template language resource, with the properties and message resources provided to the template instance.
+A _template engine_ is a class capable of render a specific template language resource, with the properties and message resources provided to the template instance.
 
 Is an implementation class of the link:apidocs/cat/albirar/template/engine/service/ITemplateEngine.html[`cat.albirar.template.engine.service.ITemplateEngine`] interface.
 
-Since version `3.0.0`, a factory is used to render templates. This factory is responsible of find and delegate the render call to a registered template engine.
+Since version `3.0.0`, no direct calls to template engine should to be made to render a template, instead a factory is used to delegate on suitable template engine selected by template language. This factory is responsible of find and delegate the render calling to a registered template engine.
 
-Library ships with a link:https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html[Thymeleaf Spring Dialect] template engine that is auto-registered.
+== Using on your project
 
-You can add more template engines by adding the corresponding jar to the classpath and configure and register them.
+This library does not implement any template engine. Instead, you should to add a dependency to the template engine jar that you want to use.
 
-== Add a new template engine to your project
+You can use more than one template engine, only need to add any dependenciy of template engine jar you want.
 
-In your project, among other libraries, you should to add a dependency to the template engine jar that you want to use.
+In your configuration, you should to add the template engine configuration class you want to use.
 
-In your configuration, you should to add the template engine class on the class collection to _scan_ by Spring.
+Also, if template engine jar implements auto-configuration and you enable this feature, or use the annotation provided by template engine, no further configuration should to use.
 
 The template engine class should to register itself on factory.
 
 That's all! You can use templates in the language that the selected template engines can manage.
+
+Furthermore information, see link:usage.html[Usage]
 
 == Develop a new template engine
 
@@ -41,7 +56,7 @@ Create a class that implement the link:apidocs/cat/albirar/template/engine/servi
 [IMPORTANT]
 ====
 Your class should to be associated with a specific template language. An identifier is required to do so.
-A curated selection of identifier string should to be made. In case of `Thymeleaf` with `Spring dialect`, the identifier is `thymeleaf-spring` and is defined as a constant at class link:apidocs/cat/albirar/template/engine/service/impl/ThymeleafSpringTemplateEngineImpl.html[`cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl`].
+A curated selection of identifier string should to be made in order to avoid duplications.
 ====
 
 Is a good practice to expose publicly the string constant with the defined identifier. So, users of your template engine can reference directly this identifier.
@@ -83,4 +98,15 @@ Although you can register your template with the configuration class, it's not r
 
 It's better that template engine class do a self-registration on initializing bean.
 ====
+
+Your `Configuration` class should to import the link:apidoc/cat/albirar/template/engine/configuration/TemplateEngineConfiguration[`TemplateEngineConfiguration`] to configure the registry and the factory.
+
+
+=== Recommendations
+
+Autoconfiguration is a feature of spring-boot that offers a simple way to use components with almost no configuration by user.
+
+A `spring.factories` for auto configuration (with `org.springframework.boot.autoconfigure.EnableAutoConfiguration` factory) is recommended.
+
+Providing an annotation for autoconfiguration is also recommended.
 

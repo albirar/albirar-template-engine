@@ -5,6 +5,7 @@ Octavi Fornés <ofornes@albirar.cat>
 :doctype: article
 :encoding: utf-8
 :lang: en
+:revnumber: {albirar-te-engine.version}
 
 [cols="1,1"]
 |===

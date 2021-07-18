@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.thymeleaf.templatemode.TemplateMode;
 
 import cat.albirar.template.engine.EContentType;
 import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
@@ -43,7 +42,6 @@ public class EContentTypeTest {
         
         ct = EContentType.HTML;
         assertEquals("text/html", ct.getMediaType());
-        assertEquals(TemplateMode.HTML, ct.getTemplateMode());
     }
     @Test
     public void when_mediaTypeIsText_then_PropertiesAreOk() {
@@ -51,6 +49,5 @@ public class EContentTypeTest {
         
         ct = EContentType.TEXT_PLAIN;
         assertEquals("text/plain", ct.getMediaType());
-        assertEquals(TemplateMode.TEXT, ct.getTemplateMode());
     }
 }

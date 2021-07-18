@@ -19,8 +19,9 @@
 package cat.albirar.template.engine.test.app.configuration.properties;
 
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 
-import cat.albirar.template.engine.configuration.AutoconfigureTemplateEngine;
+import cat.albirar.template.engine.configuration.TemplateEngineConfiguration;
 
 /**
  * Testing configuration.
@@ -28,6 +29,6 @@ import cat.albirar.template.engine.configuration.AutoconfigureTemplateEngine;
  * @since 2.0.2
  */
 @SpringBootConfiguration
-@AutoconfigureTemplateEngine
+@ImportAutoConfiguration(classes = TemplateEngineConfiguration.class)
 public class PropertiesTestConfiguration {
 }

@@ -5,27 +5,21 @@ Octavi Fornés <ofornes@albirar.cat>
 :doctype: article
 :encoding: utf-8
 :lang: en
+:revnumber: {albirar-te-engine.version}
 
 A simple template engine to transform templates into HTML or TXT.
 
 == Requirements
 
 * image:https://img.shields.io/badge/Jdk-1.8-informational["Jdk 1.8"]
-* image:https://img.shields.io/badge/Maven-3.6-informational["Maven 3.6"]
 * image:https://img.shields.io/badge/Spring%20Boot-2.3-informational["Spring boot 2.3.x"]
 * image:https://img.shields.io/badge/Spring%20Framework-5.2-informational["Spring Framework 5.2.x"]
-* image:https://img.shields.io/badge/Thymeleaf-3.0-informational["Thymeleaf 3.0.x"]
 
-This library depends on https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html["thymeleaf with Spring Beans extension"].
-Can be used with https://spring.io/projects/spring-framework["Spring Framework"] only or with a https://spring.io/projects/spring-boot["Spring-Boot application"].
+This library depends on template engine implementation. See official implementations at https://albirar.github.io/albirar-te-engines.
 
-== Add to your project
+== Engines
 
-See link:dependency-info.html[Add to your project]
-
-== Usage
-
-See link:usage.html[Usage]
+See link:engines.html[Engines]
 
 == Status
 

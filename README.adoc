@@ -1,0 +1,29 @@
+= albirar-template-engine
+
+Octavi Fornés <ofornes@albirar.cat>
+
+:doctype: article
+:encoding: utf-8
+:lang: en
+:revnumber: {albirar-te-engine.version}
+
+A simple template engine to transform templates into HTML or TXT.
+
+== Requirements
+
+This library depends on spring framework MVC and thymeleaf.
+
+* image::https://img.shields.io/badge/Jdk-1.8-informational[Jdk 1.8]
+* image::https://img.shields.io/badge/Spring%20Framework-5.2-informational[Spring Framework 5.2.x]
+* image::https://img.shields.io/badge/Spring%20Boot-2.3-informational[Spring boot 2.3.x]
+
+== Engines
+
+See official implementations at https://albirar.github.io/albirar-te-engines
+
+== Documentation
+
+See https://albirar.github.io/albirar-template-engine
+
+
+
