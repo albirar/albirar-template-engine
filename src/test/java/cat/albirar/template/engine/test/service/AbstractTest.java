@@ -18,9 +18,21 @@
  */
 package cat.albirar.template.engine.test.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import cat.albirar.template.engine.EContentType;
+import cat.albirar.template.engine.ITemplateEngineFactory;
 import cat.albirar.template.engine.models.TemplateDefinitionBean;
-import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl;
+import cat.albirar.template.engine.models.TemplateInstanceBean;
+import cat.albirar.template.engine.service.ITemplateEngine;
+import cat.albirar.template.engine.service.ITemplateEngineRegistry;
 
 /**
  * Abstract class with some common methods and properties.
@@ -35,71 +47,55 @@ public abstract class AbstractTest {
     protected static final String SIMPLE_TEST_P = "A simple template";
     
     protected static final String SIMPLE_TXT_TEMPLATE_TEST_RESULT = "Hello,\n\nThis is a simple text template without variables nor messages\n\nBye!";
+    protected static final String SIMPLE_HTML_TEMPLATE_TEST_RESULT = "<html>\n<body>\n    <h1>Text</h1>\n    <p>A simple template</p>\n</body>\n</html>";
     
-    protected static final String VARS_HTML_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsTemplate.html";
-    protected static final String VARS_TXT_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsTemplate.txt";
-    protected static final String VARS_TEST_H1 = "Vars test title";
+    protected static final String TEST_LANGUAGE = "test";
     
-    protected static final String VARS_MSG_TEST_MSG_RESOURCE = "cat/albirar/template/engine/test/messages/testMessages";
-    protected static final String VARS_HTML_MSG_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsMessagesTemplate.html";
-    protected static final String VARS_TXT_MSG_TEMPLATE_TEST = "classpath:/cat/albirar/template/engine/test/templates/varsMessagesTemplate.txt";
-    protected static final String VARS_MSG_TEST_H1 = "Vars &amp; Msg test title";
-    protected static final String VARS_MSG_TEST_P_EN = "This is a template for test with variables";
-    protected static final String VARS_MSG_TEST_P_CA = "Aquesta és una plantilla de prova amb variables";
-    protected static final String VARS_MSG_TEST_P_FR = "Ceci est un modèle de test avec des variables";
-    protected static final String VARS_MSG_TEST_LBL_EN = "User name:&nbsp;";
-    protected static final String VARS_MSG_TEST_LBL_CA = "Nom d'usuari:&nbsp;";
-    protected static final String VARS_MSG_TEST_LBL_FR = "Nom d'utilisateur:&nbsp;";
-    
-    protected static final String VARS_MSG_TEST_TXT_H1 = "Vars & Msg test title";
-    protected static final String VARS_MSG_TEST_TXT_LBL_EN = "User name: ";
-    protected static final String VARS_MSG_TEST_TXT_LBL_CA = "Nom d'usuari: ";
-    protected static final String VARS_MSG_TEST_TXT_LBL_FR = "Nom d'utilisateur: ";
-    
-    protected static final String [] REGISTERED_TEMPLATES = { ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE };
+    protected static final String [] REGISTERED_TEMPLATES = { TEST_LANGUAGE };
     
     protected static final TemplateDefinitionBean simpleHtmlTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test1")
             .contentType(EContentType.HTML)
             .template(SIMPLE_HTML_TEMPLATE_TEST)
-            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
-            .build()
-            ;
-    
-    protected static final TemplateDefinitionBean varHtmlTemplateDefinition = TemplateDefinitionBean.builder()
-            .name("Test 2")
-            .contentType(EContentType.HTML)
-            .template(VARS_HTML_TEMPLATE_TEST)
-            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
-            .build()
-            ;
-    
-    protected static final TemplateDefinitionBean varMsgHtmlTemplateDefinition = TemplateDefinitionBean.builder()
-            .name("Test 2")
-            .contentType(EContentType.HTML)
-            .template(VARS_HTML_MSG_TEMPLATE_TEST)
-            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
+            .templateEngineLanguage(TEST_LANGUAGE)
             .build()
             ;
     
     protected static final TemplateDefinitionBean simpleTxtTemplateDefinition = TemplateDefinitionBean.builder()
             .name("Test1")
             .template(SIMPLE_TXT_TEMPLATE_TEST)
-            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
+            .templateEngineLanguage(TEST_LANGUAGE)
             .build()
             ;
     
-    protected static final TemplateDefinitionBean varTxtTemplateDefinition = TemplateDefinitionBean.builder()
-            .name("Test 2")
-            .template(VARS_TXT_TEMPLATE_TEST)
-            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
-            .build()
-            ;
+    @Autowired
+    protected ITemplateEngineFactory templateEnginefactory;
+    
+    @Autowired
+    protected ITemplateEngineRegistry templateEngineRegistry;
+    
 
-    protected static final TemplateDefinitionBean varMsgTxtTemplateDefinition = TemplateDefinitionBean.builder()
-            .name("Test 2")
-            .template(VARS_TXT_MSG_TEMPLATE_TEST)
-            .templateEngineLanguage(ThymeleafSpringTemplateEngineImpl.TEMPLATE_LANGUAGE)
-            .build()
-            ;
+    @BeforeEach
+    public void prepareTests() {
+        ITemplateEngine te;
+        
+        for(String tl : REGISTERED_TEMPLATES) {
+            te = mock(ITemplateEngine.class);
+            when(te.getTemplateLanguage()).thenReturn(tl);
+            // Prepare for all template render
+            when(te.renderTemplate(eq(TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().build()).build()))).thenReturn(SIMPLE_HTML_TEMPLATE_TEST_RESULT);
+            when(te.renderTemplate(eq(TemplateInstanceBean.buildInstance(simpleTxtTemplateDefinition.toBuilder().build()).build()))).thenReturn(SIMPLE_TXT_TEMPLATE_TEST_RESULT);
+            templateEngineRegistry.register(te);
+        }        
+    }
+    
+    @Test
+    public void testModels() {
+        TemplateInstanceBean te1, te2;
+        
+        te1 = TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().build()).build();
+        te2 = TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().build()).build();
+        
+        assertEquals(te1, te2);
+    }
 }

@@ -18,7 +18,6 @@ package cat.albirar.template.engine.configuration;
 
 import static cat.albirar.template.engine.configuration.PropertiesTemplate.ROOT_TEMPLATE_PROPERTIES;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -27,13 +26,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
 import cat.albirar.template.engine.models.ConfigurationPropertiesBean;
 import cat.albirar.template.engine.registry.TemplateEngineRegistryDefaultImpl;
 import cat.albirar.template.engine.service.ITemplateEngine;
-import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImpl;
 
 /**
  * The configuration for template engine.
@@ -44,35 +40,10 @@ import cat.albirar.template.engine.service.impl.ThymeleafSpringTemplateEngineImp
 @AutoConfigureOrder(Integer.MAX_VALUE)
 @EnableConfigurationProperties
 @PropertySource("classpath:/albirar-template-engine.yaml")
-@ComponentScan(basePackageClasses = {ITemplateEngine.class, ThymeleafSpringTemplateEngineImpl.class, TemplateEngineRegistryDefaultImpl.class})
+@ComponentScan(basePackageClasses = {ITemplateEngine.class, TemplateEngineRegistryDefaultImpl.class})
 public class TemplateEngineConfiguration {
-    /**
-     * The {@link SpringTemplateEngine} to use on rendering.
-     * @param resolver The resolver for resources
-     * @return The {@link SpringTemplateEngine} configured to use them
-     */
     @Bean
     @ConditionalOnMissingBean
-    public SpringTemplateEngine templateEngine(@Autowired SpringResourceTemplateResolver resolver) {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(resolver);
-        return templateEngine;
-    }
-    /**
-     * The template resolver for thymeleaf.
-     * @param configurationProperties The configuration properties for thymeleaf resolver.
-     * @return The resolver
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    public SpringResourceTemplateResolver thymeleafTemplateResolver(@Autowired ConfigurationPropertiesBean configurationProperties) {
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setCharacterEncoding(configurationProperties.getCharset().name());
-        return templateResolver;
-    }
-    
-
-    @Bean
     @ConfigurationProperties(prefix = ROOT_TEMPLATE_PROPERTIES)
     public ConfigurationPropertiesBean configurationPropertiesBean() {
         return ConfigurationPropertiesBean.builder().build();

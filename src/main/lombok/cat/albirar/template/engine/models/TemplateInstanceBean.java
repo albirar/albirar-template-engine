@@ -57,6 +57,7 @@ public class TemplateInstanceBean extends TemplateDefinitionBean {
      */
     @Setter(onParam_ = { @NotNull })
     @NotNull
+    @EqualsAndHashCode.Exclude
     private MessageSource messages;
     /**
      * A map with key-values to apply on rendering.

@@ -25,7 +25,7 @@ import java.nio.charset.Charset;
  * @author Octavi Forn&eacute;s <mailto:ofornes@albirar.cat[]>
  * @since 1.0.0
  */
-public interface PropertiesTemplate {
+public abstract class PropertiesTemplate {
     /**
      * Root for all configuration properties of template engine.
      */

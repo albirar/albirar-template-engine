@@ -42,6 +42,7 @@ import cat.albirar.template.engine.models.TemplateInstanceBean;
 import cat.albirar.template.engine.service.IEngineRender;
 import cat.albirar.template.engine.service.ITemplateEngine;
 import cat.albirar.template.engine.service.ITemplateEngineRegistry;
+import cat.albirar.template.engine.service.RenderingException;
 import cat.albirar.template.engine.service.TemplateNotAccessibleException;
 
 /**
@@ -106,7 +107,7 @@ public class TemplateEngineRegistryDefaultImpl implements ITemplateEngineRegistr
         }
         LOGGER.debug("Template engine for {} template language NOT FOUND!", template.getTemplateEngineLanguage());
         // If no template engine was found, a exception should to be thrown
-        throw new IllegalStateException("No engine was registerd for the template language '".concat(template.getTemplateEngineLanguage()).concat("'"));
+        throw new IllegalStateException("No engine was registered for the template language '".concat(template.getTemplateEngineLanguage()).concat("'"));
     }
     /**
      * Checks the preconditions for the indicated {@code strResource} as established at {@link IEngineRender#renderTemplate(TemplateInstanceBean)}.
@@ -129,6 +130,7 @@ public class TemplateEngineRegistryDefaultImpl implements ITemplateEngineRegistr
         }
         catch(IOException e) {
             LOGGER.error(String.format("IOException on get the file for resource %s!", strResource), e);
+            throw new RenderingException(String.format("IOException on get the file for resource %s!", strResource), e);
         }
         if(!resource.isReadable()) {
             LOGGER.error("Resource {} IS NOT READABLE!", strResource);

@@ -53,7 +53,7 @@ public class TemplateEngineContextTest extends AbstractTest {
         
         assertThrows(ValidationException.class, () -> new TemplateEngineContext(null));
         
-        tec = new TemplateEngineContext(TemplateInstanceBean.buildInstance(varMsgHtmlTemplateDefinition).build());
+        tec = new TemplateEngineContext(TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition).build());
         
         assertThrows(ValidationException.class, () -> tec.containsVariable(null));
         assertThrows(ValidationException.class, () -> tec.containsVariable(""));
