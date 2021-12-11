@@ -18,7 +18,6 @@ package cat.albirar.template.engine.configuration;
 
 import static cat.albirar.template.engine.configuration.PropertiesTemplate.ROOT_TEMPLATE_PROPERTIES;
 
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -37,7 +36,6 @@ import cat.albirar.template.engine.service.ITemplateEngine;
  * @since 1.0.0
  */
 @Configuration
-@AutoConfigureOrder(Integer.MAX_VALUE)
 @EnableConfigurationProperties
 @PropertySource("classpath:/albirar-template-engine.yaml")
 @ComponentScan(basePackageClasses = {ITemplateEngine.class, TemplateEngineRegistryDefaultImpl.class})

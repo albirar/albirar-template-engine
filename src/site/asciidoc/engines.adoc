@@ -25,7 +25,7 @@ A _template engine_ is a class capable of render a specific template language re
 
 Is an implementation class of the link:apidocs/cat/albirar/template/engine/service/ITemplateEngine.html[`cat.albirar.template.engine.service.ITemplateEngine`] interface.
 
-Since version `3.0.0`, no direct calls to template engine should to be made to render a template, instead a factory is used to delegate on suitable template engine selected by template language. This factory is responsible of find and delegate the render calling to a registered template engine.
+Since version `3.0.0`, no direct calls to template engine should to be made to render a template. Instead, a factory is used to delegate on suitable template engine selected by template language. This factory is responsible of find and delegate the render calling to a registered template engine.
 
 == Using on your project
 

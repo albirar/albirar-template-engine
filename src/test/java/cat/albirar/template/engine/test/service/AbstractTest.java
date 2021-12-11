@@ -18,20 +18,11 @@
  */
 package cat.albirar.template.engine.test.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cat.albirar.template.engine.EContentType;
 import cat.albirar.template.engine.ITemplateEngineFactory;
 import cat.albirar.template.engine.models.TemplateDefinitionBean;
-import cat.albirar.template.engine.models.TemplateInstanceBean;
-import cat.albirar.template.engine.service.ITemplateEngine;
 import cat.albirar.template.engine.service.ITemplateEngineRegistry;
 
 /**
@@ -67,35 +58,13 @@ public abstract class AbstractTest {
             .templateEngineLanguage(TEST_LANGUAGE)
             .build()
             ;
+    protected static final TemplateDefinitionBean invalidTemplateDefinition = TemplateDefinitionBean.builder()
+            .build()
+            ;
     
     @Autowired
     protected ITemplateEngineFactory templateEnginefactory;
     
     @Autowired
     protected ITemplateEngineRegistry templateEngineRegistry;
-    
-
-    @BeforeEach
-    public void prepareTests() {
-        ITemplateEngine te;
-        
-        for(String tl : REGISTERED_TEMPLATES) {
-            te = mock(ITemplateEngine.class);
-            when(te.getTemplateLanguage()).thenReturn(tl);
-            // Prepare for all template render
-            when(te.renderTemplate(eq(TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().build()).build()))).thenReturn(SIMPLE_HTML_TEMPLATE_TEST_RESULT);
-            when(te.renderTemplate(eq(TemplateInstanceBean.buildInstance(simpleTxtTemplateDefinition.toBuilder().build()).build()))).thenReturn(SIMPLE_TXT_TEMPLATE_TEST_RESULT);
-            templateEngineRegistry.register(te);
-        }        
-    }
-    
-    @Test
-    public void testModels() {
-        TemplateInstanceBean te1, te2;
-        
-        te1 = TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().build()).build();
-        te2 = TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder().build()).build();
-        
-        assertEquals(te1, te2);
-    }
 }

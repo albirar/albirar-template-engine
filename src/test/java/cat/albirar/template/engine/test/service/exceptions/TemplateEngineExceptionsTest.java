@@ -25,18 +25,15 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import cat.albirar.template.engine.ITemplateEngineFactory;
 import cat.albirar.template.engine.models.TemplateInstanceBean;
 import cat.albirar.template.engine.service.IEngineRender;
 import cat.albirar.template.engine.service.TemplateNotAccessibleException;
 import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
-import cat.albirar.template.engine.test.service.AbstractTest;
+import cat.albirar.template.engine.test.service.AbstractTemplateEngineFactoryTest;
 
 /**
  * Test for throws by {@link IEngineRender#renderTemplate(TemplateInstanceBean)}.
@@ -59,24 +56,7 @@ import cat.albirar.template.engine.test.service.AbstractTest;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = DefaultTestConfiguration.class)
-public class TemplateEngineExceptionsTest extends AbstractTest {
-    @Autowired
-    private ITemplateEngineFactory render;
-    @Autowired
-    private ApplicationContext applicationContext;
-    
-    @Test
-    public void when_templateIsOfUnkownLanguage_then_anIllegalStateExceptionIsThrown() {
-        TemplateInstanceBean tInstance;
-        
-        tInstance = TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder()
-                .templateEngineLanguage("XXX")
-                .build())
-                .build()
-                ;
-        
-        assertThrows(IllegalStateException.class, () -> render.renderTemplate(tInstance));
-    }
+public class TemplateEngineExceptionsTest extends AbstractTemplateEngineFactoryTest {
     
     @Test
     public void when_templateDoesntExists_then_aTemplateNotAccessibleExceptionIsThrown() {

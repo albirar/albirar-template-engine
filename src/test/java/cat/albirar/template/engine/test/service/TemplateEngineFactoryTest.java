@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.ValidationException;
@@ -49,7 +49,20 @@ import cat.albirar.template.engine.test.configuration.DefaultTestConfiguration;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = DefaultTestConfiguration.class)
-public class TemplateEngineFactoryTest extends AbstractTest {
+public class TemplateEngineFactoryTest extends AbstractTemplateEngineFactoryTest {
+
+    @Test
+    public void when_templateIsOfUnkownLanguage_then_anIllegalStateExceptionIsThrown() {
+        TemplateInstanceBean tInstance;
+        
+        tInstance = TemplateInstanceBean.buildInstance(simpleHtmlTemplateDefinition.toBuilder()
+                .templateEngineLanguage("XXX")
+                .build())
+                .build()
+                ;
+        
+        assertThrows(IllegalStateException.class, () -> render.renderTemplate(tInstance));
+    }
     
     /**
      * Test for validation on engine.
@@ -100,17 +113,14 @@ public class TemplateEngineFactoryTest extends AbstractTest {
      * Test the {@link ITemplateEngineFactory#getRegisteredTemplateLanguages()} method.
      */
     @Test
-    public void when_theTemplateLanguageListIsRequested_then_aNotEmptyListIsGetWithTheCorrectElements() {
+    public void when_theTemplateLanguageListIsRequested_then_aNotEmptyListIsGetWithAlmostTheCorrectElement() {
         List<String> l1, lr;
         
-        l1 = new ArrayList<String>();
-        for(String tl : REGISTERED_TEMPLATES) {
-            l1.add(tl);
-        }
+        l1 = Arrays.asList(REGISTERED_TEMPLATES);
         
         lr = templateEnginefactory.getRegisteredTemplateLanguages();
         assertNotNull(lr);
         assertFalse(lr.isEmpty());
-        assertEquals(l1, lr);
+        assertEquals(l1, lr, "If a new language are testing, please, add them to the testing register at 'cat.albirar.template.engine.test.service.AbstractTest.addRegisteredLanguage'");
     }
 }
